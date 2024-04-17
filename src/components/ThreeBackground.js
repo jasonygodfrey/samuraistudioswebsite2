@@ -46,39 +46,24 @@ const ThreeBackground = forwardRef((props, ref) => {
     composer.addPass(bloomPass);
 
     // Ambient light
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.0);
     scene.add(ambientLight);
 
     const loader = new GLTFLoader();
-    loader.load('/portal/scene.gltf', (gltf) => {
-      scene.add(gltf.scene);
-      gltf.scene.scale.set(0.1, 0.1, 0.1);
-      gltf.scene.position.set(0, -80, -300);
-      gltf.scene.rotation.y = Math.PI / 2.2;
+    
 
-      if (gltf.animations && gltf.animations.length) {
-        const portalMixer = new THREE.AnimationMixer(gltf.scene);
-        gltf.animations.forEach((clip) => {
-          const action = portalMixer.clipAction(clip);
-          action.play();
-        });
-        mixers.push(portalMixer);
-      }
-    });
-
-    loader.load('/blue_dragon/scene.gltf', (gltf) => {
+    loader.load('/wonderful_world/scene.gltf', (gltf) => {
       scene.add(gltf.scene);
-      gltf.scene.scale.set(10000, 10000, 10000);
-      gltf.scene.position.set(0, -80, -300);
+      gltf.scene.scale.set(80, 80, 80);
+      gltf.scene.position.set(0, -0, -300);
       gltf.scene.rotation.set(0.65, 0, 0);
 
-      if (gltf.animations && gltf.animations.length > 1) {
+      if (gltf.animations && gltf.animations.length > 0) {
         const dragonMixer = new THREE.AnimationMixer(gltf.scene);
-        const secondAnimation = gltf.animations[1];
-        const action = dragonMixer.clipAction(secondAnimation);
-        action.setLoop(THREE.LoopRepeat);
-        action.timeScale = 0.45;
+        const windAnimation = gltf.animations[0]; // Assuming this is the animation you want to slow down
+        const action = dragonMixer.clipAction(windAnimation);
         action.play();
+        action.setEffectiveTimeScale(0.1); // Set the speed to half
         mixers.push(dragonMixer);
       }
     });
