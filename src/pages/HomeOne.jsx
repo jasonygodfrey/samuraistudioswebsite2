@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useRef } from 'react';
 
 import '../scss/components/section.scss';
 import '../scss/components/box.scss';
@@ -20,17 +21,12 @@ import Partner from '../features/partner';
 import dataPartner from '../assets/fake-data/data-partner';
 import FAQ from '../features/faq';
 import dataFaq from '../assets/fake-data/data-faq';
+import ThreeBackground from '../components/ThreeBackground'; 
+
 
 function HomeOne(props) {
-    // Inline styles for the video background
-    const videoBackgroundStyle = {
-        position: 'fixed',
-        right: 0,
-        bottom: 0,
-        minWidth: '100%',
-        minHeight: '100%',
-        zIndex: -1, // Ensures the video stays in the background
-    };
+    // Define threeBackgroundRef here
+    const threeBackgroundRef = useRef(null);
 
     // Inline styles for the home-1 container
     const homeStyle = {
@@ -41,27 +37,7 @@ function HomeOne(props) {
 
     return (
         <div className='home-1' style={homeStyle}>
-       <video
-    autoPlay
-    muted
-    loop
-    style={{
-        position: 'fixed',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        minWidth: '100%',
-        minHeight: '100%',
-        width: 'auto',
-        height: 'auto',
-        zIndex: -1, // Ensures the video stays in the background
-        objectFit: 'cover', // Cover the screen without losing aspect ratio
-    }}>
-    <source src="/background.mp4" type="video/mp4" />
-    Your browser does not support HTML5 video.
-</video>
-
-
+            <ThreeBackground ref={threeBackgroundRef} />
             <Slider data={dataSlider} />  
 {/* <About data={dataAbout} /> */}
 <Blog data={dataBlog} />
@@ -72,7 +48,7 @@ function HomeOne(props) {
             
           {/*  <Partner data={dataPartner} /> */}
           {/*   <FAQ data={dataFaq} /> */}
-        </div>
+          </div>
     );
 }
 
