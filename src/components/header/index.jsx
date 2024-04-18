@@ -33,12 +33,36 @@ const Header = () => {
         setActiveIndex(index); 
     };
 
+
+     // Determine the screen width
+     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+     useEffect(() => {
+         const handleResize = () => {
+             setWindowWidth(window.innerWidth);
+         };
+ 
+         window.addEventListener('resize', handleResize);
+ 
+         // Clean up the event listener when the component unmounts
+         return () => window.removeEventListener('resize', handleResize);
+     }, []);
+ 
+     // Define the logo style based on the screen width
+     const logoStyle = {
+         width: windowWidth > 768 ? '25%' : '80%', // Adjust '50%' as needed for mobile
+         height: 'auto'
+     };
+ 
+
     return (
         <header id="header_main" className={`header ${scroll ? 'is-fixed' : ''}`}>
             <div className="container">
                 <div id="site-header-inner">
                     <div className="header__logo">
-                        <NavLink to="/"><img src={logo} alt="Crybox" /></NavLink>
+                    <NavLink to="/">
+                <img src={logo} alt="Logo" style={logoStyle} />
+            </NavLink>
                     </div>
                     <nav id="main-nav" className={`main-nav ${menuActive ? 'active' : ''}`} >
                         <ul id="menu-primary-menu" className="menu">
@@ -65,7 +89,8 @@ const Header = () => {
                             }
                         </ul>
                     </nav>
-                    <Button title='join discord' path='/contact' />
+                    {/* <Button title='join discord' path='/contact' /> */}
+
 
                     <div className={`mobile-button ${menuActive ? 'active' : ''}`} onClick={handleMenuActive}><span></span></div>
                 </div>
