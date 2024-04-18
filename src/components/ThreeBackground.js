@@ -55,7 +55,7 @@ const ThreeBackground = forwardRef((props, ref) => {
     loader.load('/wonderful_world/scene.gltf', (gltf) => {
       scene.add(gltf.scene);
       gltf.scene.scale.set(80, 80, 80);
-      gltf.scene.position.set(0, -0, -300);
+      gltf.scene.position.set(0, -0, -400);
       gltf.scene.rotation.set(0.65, 0, 0);
 
       if (gltf.animations && gltf.animations.length > 0) {
@@ -113,7 +113,9 @@ const ThreeBackground = forwardRef((props, ref) => {
     };
   }, []);
 
-  return <div ref={mountRef} style={{ width: '100%', height: '100%' }} />;
+  return (
+    <div ref={mountRef} style={{ ...props.style, width: '100%', height: '100%' }} />
+  );
 });
 
 export default ThreeBackground;

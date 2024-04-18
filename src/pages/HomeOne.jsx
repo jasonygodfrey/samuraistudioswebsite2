@@ -37,7 +37,18 @@ function HomeOne(props) {
 
     return (
         <div className='home-1' style={homeStyle}>
-            <ThreeBackground ref={threeBackgroundRef} />
+            <ThreeBackground style={{
+                position: 'fixed',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                minWidth: '100%',
+                minHeight: '100%',
+                width: 'auto',
+                height: 'auto',
+                zIndex: -1, // Ensures the Three.js canvas stays in the background
+                objectFit: 'cover', // Cover the screen without losing aspect ratio
+            }} />
             <Slider data={dataSlider} />  
 {/* <About data={dataAbout} /> */}
 <Blog data={dataBlog} />
