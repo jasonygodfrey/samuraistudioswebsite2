@@ -50,10 +50,18 @@ function HomeOne(props) {
                 objectFit: 'cover', // Cover the screen without losing aspect ratio
             }} />
             <Slider data={dataSlider} />  
-{/* <About data={dataAbout} /> */}
+
+
+            <div style={{ position: 'relative', top: '-400px' }}>
+  <Project data={dataProject} />
+</div>
+
+
+ <About data={dataAbout} /> 
+
 <Blog data={dataBlog} />
-<Project data={dataProject} />
-            <RoadMap data={dataRoadmap} />
+
+           {/*  <RoadMap data={dataRoadmap} />  */}
           {/*   <Work data={dataWork} /> */}
           {/*   <Team data={dataTeam} /> */}
             

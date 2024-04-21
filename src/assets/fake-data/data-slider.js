@@ -6,8 +6,8 @@ import img1 from '../images/common/itemslider.png';
 const dataSlider = [
     {
         id: 1,
-        title: 'PURE LIGHT',
-        desc : 'SEASON 0.1',
+        title: 'The Future of Web Development with Three.js & React"',
+        desc : 'We sculpt interactive web experiences that captivate and redefine user engagement.',
         bgImg: bgImg1,
         img : img1
     },
@@ -20,8 +20,8 @@ const dataSlider = [
     },
     {
         id: 3,
-        title: 'CYbox nft collectionS for everyone',
-        desc : 'Nulla ornare sagittis placerat nunc sit tempus enim. Accumsan pellentesque ipsum felis tristique at proin vel turpis.',
+        title: 'The Future of Web Development with Three.js & React"',
+        desc : 'We sculpt interactive web experiences that captivate and redefine user engagement.',
         bgImg: bgImg3,
         classAction: 'three'
     },

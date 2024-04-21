@@ -20,7 +20,10 @@ function Slider(props) {
                     spaceBetween={0}
                     slidesPerView={1}
                     navigation
-                    scrollbar={{ draggable: true }}
+                    scrollbar={{ draggable: false}}
+                    initialSlide={2} // Start with the third slide
+                    allowTouchMove={false} // Disable dragging/swiping
+
                 >
                 {
                     data.slice(0,3).map(item => (

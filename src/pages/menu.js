@@ -3,29 +3,32 @@ const menus = [
         id: 1,
         name: 'Home',
         links: '#',
-        namesub: [
-            {
-                id: 1,
-                sub: 'Home 01',
-                links: '/'
-            },
-            {
-                id: 2,
-                sub: 'Home 02',
-                links: '/home-v2'
-            },
-            {
-                id: 3,
-                sub: 'Home 03',
-                links: '/home-v3'
-            },
-        ]
+       /*
+namesub: [
+    {
+        id: 1,
+        sub: 'Home 01',
+        links: '/'
     },
+    {
+        id: 2,
+        sub: 'Home 02',
+        links: '/home-v2'
+    },
+    {
+        id: 3,
+        sub: 'Home 03',
+        links: '/home-v3'
+    },
+]
+*/}
+
+    ,
     {
         id: 2,
         name: 'About',
         links: '#',
-        namesub: [
+      /*  namesub: [
             {
                 id: 1,
                 sub: 'About 01',
@@ -62,11 +65,11 @@ const menus = [
                 links: '/404'
             },
 
-        ]
+        ]*/
     },
     {
         id: 3,
-        name: 'Road Map',
+        name: 'Services',
         links: '#',
         namesub: [
             {
@@ -83,7 +86,7 @@ const menus = [
     },
     {
         id: 4,
-        name: 'Nft',
+        name: 'Productions',
         links: '#',
         namesub: [
             {
@@ -98,7 +101,7 @@ const menus = [
             },
         ],
     },
-    {
+   /* {
         id: 5,
         name: 'Blog',
         links: '#',
@@ -114,7 +117,7 @@ const menus = [
                 links: '/blog-details'
             },
         ],
-    },
+    },*/
     {
         id: 6,
         name: 'Contact',

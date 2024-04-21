@@ -27,19 +27,26 @@
     }
     .main-nav {
         position: absolute;
-        left: 31%;
         top: 50%;
-        -webkit-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-        -o-transform: translateY(-50%);
         transform: translateY(-50%);
-        padding-left: 4px;
+        padding-left: 4px; // Keep original padding for consistency
         letter-spacing: 0.6px;
-
-        @include desktop-width {
-            left: 21%;
+    
+        // Initially, do not set left or right; let the mobile style dictate this
+    
+        // Only apply right alignment for desktop widths
+        @media (min-width: 768px) {
+            left: auto; // Override any left positioning for desktop
+            right: 0; // Align to the right edge of the header
+            padding-right: 100px; // Adjust padding to match your design
+            
+            // Adjust the percentage as needed for desktop view
+            @include desktop-width {
+                right: 10%;
+            }
         }
     }
+    
 
     &.is-fixed {
         @include transition5;
@@ -179,6 +186,7 @@
         transform: translateX(-100%);
         transition: transform 0.5s ease;
 
+        
         .sub-menu {
             background: transparent;
             padding: 15px 0;
