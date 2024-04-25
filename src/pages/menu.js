@@ -71,7 +71,7 @@ namesub: [
         id: 3,
         name: 'Services',
         links: '#',
-        namesub: [
+       /* namesub: [
             {
                 id: 1,
                 sub: 'Road Map 01',
@@ -82,13 +82,13 @@ namesub: [
                 sub: 'Road Map 02',
                 links: '/road-map-v2'
             },
-        ]
+        ] */
     },
     {
         id: 4,
         name: 'Productions',
         links: '#',
-        namesub: [
+        /* namesub: [
             {
                 id: 1,
                 sub: 'Nft Item',
@@ -99,7 +99,7 @@ namesub: [
                 sub: 'Nft Item Details',
                 links: '/nft-item-details'
             },
-        ],
+        ], */
     },
    /* {
         id: 5,

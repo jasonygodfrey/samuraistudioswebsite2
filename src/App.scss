@@ -21,7 +21,7 @@ html {
 
 
 body {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'nobel-book', monospace;
     font-size: 17px;
     line-height: 28px;
     font-weight: 400;
@@ -43,7 +43,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Chakra Petch', sans-serif;
+    font-family: 'nobel-book', sans-serif;
     font-weight: 700;
     color: $white;
 }
@@ -80,7 +80,7 @@ h6,
 
 .h7,
 .h8 {
-    font-family: 'Chakra Petch', sans-serif;
+    font-family: 'nobel-book', sans-serif;
     font-weight: 700;
     color: $white;
 }
@@ -89,7 +89,7 @@ h6,
     font-size: 24px;
     line-height: 1.33;  
     &.st {
-        font-family: 'DM Sans', sans-serif;
+        font-family: 'nobel-book', sans-serif;
         font-weight: 500;
     }
 }
@@ -98,7 +98,7 @@ h6,
     font-size: 20px;
     line-height: 1.3;  
     &.st {
-        font-family: 'DM Sans', sans-serif;
+        font-family: 'nobel-book', sans-serif;
         font-weight: 500;
     }
 }

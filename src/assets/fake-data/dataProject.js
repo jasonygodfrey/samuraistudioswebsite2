@@ -1,4 +1,4 @@
-import img1 from '../images/common/img1.jpg'
+import img1 from '../images/common/img1.png'
 import img2 from '../images/common/img2.jpg'
 import img3 from '../images/common/img3.jpg'
 import img4 from '../images/common/img4.jpg'
@@ -16,124 +16,124 @@ import img14 from '../images/common/img14.jpg'
 const dataProject = [
     {
         id: 1,
-        title: 'CYBOX #01',
+        title: '',
         img: img1,
     },
     {
         id: 2,
-        title: 'CYBOX #02',
-        img: img2,
+        title: '',
+        img: img1,
     },
     {
         id: 3,
-        title: 'CYBOX #03',
-        img: img3,
+        title: '',
+        img: img1,
     },
     {
         id: 4,
-        title: 'CYBOX #04',
-        img: img4,
+        title: '',
+        img: img1,
     },
     {
         id: 5,
-        title: 'CYBOX #05',
-        img: img5,
+        title: '',
+        img: img1,
     },
     {
         id: 6,
-        title: 'CYBOX #06',
-        img: img6,
+        title: '',
+        img: img1,
     },
     {
         id: 7,
         title: 'CYBOX #07',
-        img: img7,
+        img: img1,
     },
     {
         id: 8,
         title: 'CYBOX #08',
-        img: img2,
+        img: img1,
     },
 
     {
-        id: 9,
-        title: 'CYBOX #09',
-        img: img9,
+        id: 1,
+        title: 'CYBOX #01',
+        img: img1,
     },
     {
         id: 10,
         title: 'CYBOX #10',
-        img: img10,
+        img: img1,
     },
     {
         id: 11,
         title: 'CYBOX #11',
-        img: img11,
+        img: img1,
     },
     {
         id: 12,
         title: 'CYBOX #12',
-        img: img12,
+        img: img1,
     },
     {
         id: 13,
         title: 'CYBOX #13',
-        img: img13,
+        img: img1,
     },
     {
         id: 14,
         title: 'CYBOX #14',
-        img: img14,
+        img: img1,
     },
     {
         id: 15,
-        title: 'CYBOX #15',
+        title: '',
         img: img1,
     },
     {
         id: 16,
         title: 'CYBOX #16',
-        img: img3,
+        img: img1,
     },
     {
         id: 17,
-        title: 'CYBOX #01',
+        title: '',
         img: img1,
     },
     {
         id: 18,
-        title: 'CYBOX #02',
-        img: img2,
+        title: '',
+        img: img1,
     },
     {
         id: 19,
         title: 'CYBOX #03',
-        img: img3,
+        img: img1,
     },
     {
         id: 20,
         title: 'CYBOX #04',
-        img: img4,
+        img: img1,
     },
     {
         id: 21,
         title: 'CYBOX #05',
-        img: img5,
+        img: img1,
     },
     {
         id: 22,
         title: 'CYBOX #06',
-        img: img6,
+        img: img1,
     },
     {
         id: 23,
         title: 'CYBOX #07',
-        img: img7,
+        img: img1,
     },
     {
         id: 24,
         title: 'CYBOX #08',
-        img: img2,
+        img: img1,
     },
 ]
 

@@ -6,7 +6,7 @@ import img1 from '../images/common/itemslider.png';
 const dataSlider = [
     {
         id: 1,
-        title: 'The Future of Web Development with Three.js & React"',
+        title: 'The Future of Web Development with Three.js & React',
         desc : 'We sculpt interactive web experiences that captivate and redefine user engagement.',
         bgImg: bgImg1,
         img : img1
@@ -20,8 +20,8 @@ const dataSlider = [
     },
     {
         id: 3,
-        title: 'The Future of Web Development with Three.js & React"',
-        desc : 'We sculpt interactive web experiences that captivate and redefine user engagement.',
+        title: 'The Future of Web Development',
+        desc : 'We sculpt interactive web experiences that captivate and redefine user engagement. Specialized Services with Three.js & React.',
         bgImg: bgImg3,
         classAction: 'three'
     },

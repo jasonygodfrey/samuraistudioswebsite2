@@ -12,6 +12,8 @@ Project.propTypes = {
 
 function Project(props) {
     const {data} = props;
+
+    
     return (
         <section className="tf-section tf-project">
             <div className="container-fluid">
@@ -19,7 +21,7 @@ function Project(props) {
             <Swiper
                 className='swiper-portfolio s1'
                 modules={[ Autoplay ]}
-                spaceBetween={30}
+                spaceBetween={10}
                 breakpoints={{
                     0: {
                         slidesPerView: 2,
@@ -37,7 +39,7 @@ function Project(props) {
                     disableOnInteraction: false,
                     pauseOnMouseEnter: true,
                 }}
-                speed= {2000}
+                speed= {3000}
             >
                 {
                     data.map(item => (
@@ -49,6 +51,7 @@ function Project(props) {
 
             </Swiper>
 
+{/*
             <Swiper
                 className='swiper-portfolio s1 mt-30'
                 modules={[ Autoplay ]}
@@ -81,7 +84,7 @@ function Project(props) {
                     ))
                 }
 
-            </Swiper>
+            </Swiper> */}
             </div>
         </section>
     );

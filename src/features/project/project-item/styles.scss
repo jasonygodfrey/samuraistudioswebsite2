@@ -2,8 +2,9 @@
 .img-box {
     @include transition3;
     position: relative;
-    padding: 20px 20px 68px;  
-    background: #0e2230;
+    padding: 8px 40px 68px;  
+    background: #0e22302e;
+    
     &::after {
         @include transition3;
         position: absolute;
@@ -50,6 +51,11 @@
     }
     &:hover {
         cursor: context-menu;
+    }
+
+     // Media Query for mobile devices
+     @media (max-width: 767px) {
+        padding: 5px 5px;  // Reduced padding for mobile
     }
 }
 
