@@ -31,8 +31,12 @@
         }
         .box-slider__main {
             padding: 259px 0 0;
+
+            // Custom media query for mobile devices
+            @media (max-width: 768px) {
+                padding: 159px 0 0; // Reduced the top padding by 100px
+            }
         }
-        
         .content-box {
             padding-left: 44px;
             padding-bottom: 182px;
@@ -160,11 +164,7 @@
     .swiper-button-prev::after {
         content: "\f104";
     }
-    @include mobile {
-        .box-slider__main {
-            padding: 159px 0 0;  // Reduced the top padding by 100px for mobile devices
-        }
-    }
+
 
 }
 
