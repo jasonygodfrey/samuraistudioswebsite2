@@ -52,10 +52,10 @@
         @include transition5;
         z-index: 9999;
         position  : fixed;
-        height: 90px;
+        height: 120px;
         left      : 0;
         width     : 100%;
-        background-color: $bg-3;
+        background-color: #090808;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1), inset 0px 1px 0px #ECECEC;
     }
 }
@@ -345,13 +345,13 @@
 #header_main
 
 #header_main.main.is-fixed {
-    background-color: #190d3e;
+    background-color: #000000;
 }
 
 .header.main.is-fixed .tf-button span.tl::before, 
 .header.main.is-fixed .tf-button span.tl::after {
     border-left: 16px solid transparent;
     border-right: 16px solid transparent;
-    border-bottom: 16px solid #190d40 !important;
+    border-bottom: 16px solid #000000 !important;
 }
 

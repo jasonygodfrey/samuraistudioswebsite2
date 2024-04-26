@@ -19,8 +19,8 @@ function Blog(props) {
     const {data} = props;
 
     const [dataBlock] = useState({
-        subtitle: 'BLOGS',
-        title: 'Lastest News'
+        subtitle: '',
+        title: 'Featured Work'
     })
 
     return (
