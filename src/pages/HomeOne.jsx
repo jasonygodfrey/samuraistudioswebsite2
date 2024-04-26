@@ -1,6 +1,6 @@
+import React, { useRef, useState, useEffect } from 'react';
 
-import React, { useRef } from 'react';
-
+// Import styles and components
 import '../scss/components/section.scss';
 import '../scss/components/box.scss';
 import Slider from '../components/slider';
@@ -21,18 +21,40 @@ import Partner from '../features/partner';
 import dataPartner from '../assets/fake-data/data-partner';
 import FAQ from '../features/faq';
 import dataFaq from '../assets/fake-data/data-faq';
-import ThreeBackground from '../components/ThreeBackground'; 
-
+import ThreeBackground from '../components/ThreeBackground';
 
 function HomeOne(props) {
-    // Define threeBackgroundRef here
     const threeBackgroundRef = useRef(null);
 
-    // Inline styles for the home-1 container
+    // State to hold the dynamic style for the Project component
+    const [projectStyle, setProjectStyle] = useState({ position: 'relative', top: '-400px' });
+
+    // Effect to update style based on window size
+    useEffect(() => {
+        const updateStyle = () => {
+            // Assuming 'mobile' as screens smaller than or equal to 768px width
+            if (window.innerWidth <= 768) {
+                setProjectStyle({ position: 'relative', top: '-150px' }); // Adjust top value as needed
+            } else {
+                setProjectStyle({ position: 'relative', top: '-400px' });
+            }
+        };
+
+        // Add event listener for window resize
+        window.addEventListener('resize', updateStyle);
+
+        // Call the function to set initial style
+        updateStyle();
+
+        // Clean up listener on component unmount
+        return () => {
+            window.removeEventListener('resize', updateStyle);
+        };
+    }, []);
+
     const homeStyle = {
         position: 'relative',
         zIndex: 1,
-        // Add any other styles you need for home-1 here
     };
 
     return (
@@ -46,28 +68,23 @@ function HomeOne(props) {
                 minHeight: '100%',
                 width: 'auto',
                 height: 'auto',
-                zIndex: -1, // Ensures the Three.js canvas stays in the background
-                objectFit: 'cover', // Cover the screen without losing aspect ratio
+                zIndex: -1,
+                objectFit: 'cover',
             }} />
-            <Slider data={dataSlider} />  
+            <Slider data={dataSlider} />
 
-
-            <div style={{ position: 'relative', top: '-400px' }}>
-  <Project data={dataProject} />
-</div>
-
-
- <About data={dataAbout} /> 
-
-<Blog data={dataBlog} />
-
-           {/*  <RoadMap data={dataRoadmap} />  */}
-          {/*   <Work data={dataWork} /> */}
-          {/*   <Team data={dataTeam} /> */}
-            
-          {/*  <Partner data={dataPartner} /> */}
-          {/*   <FAQ data={dataFaq} /> */}
-          </div>
+            <div style={projectStyle}>
+                <Project data={dataProject} />
+            </div>
+            <About data={dataAbout} style={{ position: 'relative', top: '-150px' }} />
+            <Blog data={dataBlog} />
+            {/* Uncomment these sections if needed */}
+            {/* <RoadMap data={dataRoadmap} /> */}
+            {/* <Work data={dataWork} /> */}
+            {/* <Team data={dataTeam} /> */}
+            {/* <Partner data={dataPartner} /> */}
+            {/* <FAQ data={dataFaq} /> */}
+        </div>
     );
 }
 
