@@ -30,8 +30,9 @@
             height: 944px;
         }
         .box-slider__main {
-            padding: 159px 0 0;
+            padding: 259px 0 0;
         }
+        
         .content-box {
             padding-left: 44px;
             padding-bottom: 182px;
@@ -45,6 +46,7 @@
                 padding-right: 140px;
                 margin-bottom: 48px;
             }
+            
 
             @include tablet {
                 padding-left: 0;
@@ -157,6 +159,11 @@
 
     .swiper-button-prev::after {
         content: "\f104";
+    }
+    @include mobile {
+        .box-slider__main {
+            padding: 159px 0 0;  // Reduced the top padding by 100px for mobile devices
+        }
     }
 
 }
