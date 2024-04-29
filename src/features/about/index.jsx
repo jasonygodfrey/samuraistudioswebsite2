@@ -15,7 +15,7 @@ function About(props) {
     const [dataBlock] = useState({
         subtitle: '',
         title: 'About Us',
-        desc: 'Maecenas sit pretium, cras in. In quisque sem id eget. In vel gravida ut adipiscing integer felis. Id ac non arcu facilisi proin ultrices sed. Id accumsan quam viverra ante in id integer ut. Volutpat lobortis dolor etiam dis interdum tincidunt senectus.'
+        desc: 'Welcome to Samurai Studios – where cutting-edge technology meets creativity. Specializing in Three.js and React, we create immersive, interactive web experiences that push the boundaries of user engagement and digital art.'
     });
 
     return (
@@ -30,7 +30,7 @@ function About(props) {
                                 <h4 className="title">{dataBlock.title}</h4>
                             </div>
                             <p>{dataBlock.desc}</p>
-                            <Button title="get Nfts" path='/' />
+                           {/* <Button title="get Nfts" path='/' /> */}
                         </div>
                     </div>
                     <div className="col-xl-7 col-md-12">

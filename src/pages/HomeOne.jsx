@@ -72,6 +72,14 @@ function HomeOne(props) {
         zIndex: 1,
     };
 
+    // In your HomeOne or equivalent component
+const contactFormRef = useRef(null);  // Set this ref on your contact form
+
+const scrollToContact = () => {
+    contactFormRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
+
+
     
     return (
         <div className='home-1' style={homeStyle}>
@@ -87,13 +95,13 @@ function HomeOne(props) {
                 zIndex: -1,
                 objectFit: 'cover',
             }} />
-            <Slider data={dataSlider} />
+            <Slider data={dataSlider} /> 
 
-            <div style={projectStyle}>
+             {/* <div style={projectStyle}>
                 <Project data={dataProject} />
-            </div>
+            </div> */}
             <About data={dataAbout} style={{ position: 'relative', top: '-150px' }} />
-            <Blog data={dataBlog} />
+          {/*  <Blog data={dataBlog} /> */}
             {/* Uncomment these sections if needed */}
             {/* <RoadMap data={dataRoadmap} /> */}
             {/* <Work data={dataWork} /> */}
@@ -104,31 +112,37 @@ function HomeOne(props) {
             <PageTitle title='Contact ' />
 
             <section className="tf-section tf-contact">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-xl-5 col-md-12">
-                            <div className="content-about m-b50 mobie-40" data-aos="fade-right" data-aos-duration="800">
-                                <div className="tf-title st2 m-b17">
-                                    <h4 className="title"></h4>
-                                </div>
-                                <p className="m-r-40">Thank you for your interest in contacting me. Please use the form to contact us via email. We will respond to your inquiry as soon as possible.</p>
-                            </div>
-                            <form action="contact/contact-process.php" className="form-contact" id="contactform" data-aos="fade-right" data-aos-duration="800">
-                                <fieldset>
-                                    <input type="text" name="name" id="name" placeholder="Name" />
-                                </fieldset>
-                                <fieldset>
-                                    <input type="email" name="mail" id="mail" placeholder="Email Address" />
-                                </fieldset>
-                                <fieldset>
-                                    <input type="number" name="phone" id="phone" placeholder="Phone" />
-                                </fieldset>
-                                <fieldset>
-                                    <textarea placeholder="Type your Messege" rows="5" tabIndex="4" name="message" className="message" id="message"></textarea>
-                                </fieldset>
-                                <button className="tf-button btn-effect" type="submit"><span className="boder-fade"></span><span className="effect">Send Message</span></button>
-                            </form>
-                        </div>
+            <div className="container">
+    <div className="row">
+        <div className="col-12">
+            <div className="content-about m-b50 mobie-40" data-aos="fade-right" data-aos-duration="800">
+                <div className="tf-title st2 m-b17">
+                    <h4 className="title">Contact Us</h4>
+                </div>
+                <p className="m-r-40">Thank you for your interest. Please contact us if you have any interest or question regarding web design, graphic design, digital marketing, and other design and general web-related services we provide. We will propose an appropriate service according to what our client needs. (Initial consultation is free.) We will respond to your inquiry as soon as possible.</p>
+            </div>
+            <form action="contact/contact-process.php" className="form-contact" id="contactform" data-aos="fade-right" data-aos-duration="800">
+                <fieldset>
+                    <input type="text" name="name" id="name" placeholder="Name" />
+                </fieldset>
+                <fieldset>
+                    <input type="email" name="mail" id="mail" placeholder="Email Address" />
+                </fieldset>
+                <fieldset>
+                    <input type="number" name="phone" id="phone" placeholder="Phone" />
+                </fieldset>
+                <fieldset>
+                    <textarea placeholder="Type your Message" rows="5" tabIndex="4" name="message" className="message" id="message"></textarea>
+                </fieldset>
+                <button className="tf-button btn-effect" type="submit" style={{ display: 'block', margin: '0 auto' }}>
+    <span className="boder-fade"></span>
+    <span className="effect">Send Message</span>
+</button>
+
+            </form>
+        </div>
+
+
                      {/*  <div className="col-xl-7  col-md-12">
                             <div className="contact-details" data-aos="fade-left" data-aos-duration="800">
                                 <div className="adress wrap-fx">
@@ -161,7 +175,7 @@ function HomeOne(props) {
             <div className="footer-main">
                 <img src={img1} alt="" className="bg1" />
                 <img src={img2} alt="" className="bg2" />
-                <div className="container">
+               {/*  <div className="container">
                     <ul className="widget-social">
                         <li>
                             <Link to="#">
@@ -212,8 +226,8 @@ function HomeOne(props) {
                     <form action="#" id="subscribe-form">
                         <input type="email" placeholder="Enter your email address" required="" id="subscribe-email" />
                         <button className="tf-button-st2 btn-effect" type="submit" id="subscribe-button"> <span className="effect">Subscribe</span></button>
-                    </form> */}
-                </div> 
+                    </form> 
+                </div>  */}
                     </div> 
             <div className="footer-bottom">
                 <div className="container">
