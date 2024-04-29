@@ -101,7 +101,7 @@ function HomeOne(props) {
             {/* <Partner data={dataPartner} /> */}
             {/* <FAQ data={dataFaq} /> */}
             <div>
-            <PageTitle title='Contact Us' />
+            <PageTitle title='Contact ' />
 
             <section className="tf-section tf-contact">
                 <div className="container">
@@ -109,9 +109,9 @@ function HomeOne(props) {
                         <div className="col-xl-5 col-md-12">
                             <div className="content-about m-b50 mobie-40" data-aos="fade-right" data-aos-duration="800">
                                 <div className="tf-title st2 m-b17">
-                                    <h4 className="title">Have a question </h4>
+                                    <h4 className="title"></h4>
                                 </div>
-                                <p className="m-r-40">Fill up the Form  and ou team will get back to within 24 hrs</p>
+                                <p className="m-r-40">Thank you for your interest in contacting me. Please use the form to contact us via email. We will respond to your inquiry as soon as possible.</p>
                             </div>
                             <form action="contact/contact-process.php" className="form-contact" id="contactform" data-aos="fade-right" data-aos-duration="800">
                                 <fieldset>
@@ -129,7 +129,7 @@ function HomeOne(props) {
                                 <button className="tf-button btn-effect" type="submit"><span className="boder-fade"></span><span className="effect">Send Message</span></button>
                             </form>
                         </div>
-                        <div className="col-xl-7  col-md-12">
+                     {/*  <div className="col-xl-7  col-md-12">
                             <div className="contact-details" data-aos="fade-left" data-aos-duration="800">
                                 <div className="adress wrap-fx">
                                     <div className="location">
@@ -150,7 +150,7 @@ function HomeOne(props) {
                                     <iframe title='map' className="map-content" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4457.30210514409!2d144.9550716623184!3d-37.818421643591336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4dd5a05d97%3A0x3e64f855a564844d!2s121%20King%20St%2C%20Melbourne%20VIC%203000%2C%20%C3%9Ac!5e0!3m2!1svi!2s!4v1631871760998!5m2!1svi!2s" width="1720" height="655" allowFullScreen="" loading="lazy" />
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </section>
@@ -206,14 +206,15 @@ function HomeOne(props) {
                             </Link>
                         </li>
                     </ul>
-                    <h5 className="heading">don’t miss out, join now for early access</h5>
+                  
+                  {/*  <h5 className="heading">don’t miss out, join now for early access</h5>
                     <p>Maecenas sit pretium, cras in. In quisque sem id eget. In vel gravida ut </p>
                     <form action="#" id="subscribe-form">
                         <input type="email" placeholder="Enter your email address" required="" id="subscribe-email" />
                         <button className="tf-button-st2 btn-effect" type="submit" id="subscribe-button"> <span className="effect">Subscribe</span></button>
-                    </form>
-                </div>
-            </div>
+                    </form> */}
+                </div> 
+                    </div> 
             <div className="footer-bottom">
                 <div className="container">
                     <div className="wrap-fx">
