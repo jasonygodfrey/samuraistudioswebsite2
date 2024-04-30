@@ -121,7 +121,7 @@ namesub: [
     {
         id: 6,
         name: 'Contact',
-        links: '/contact'
+        links: '#'
     },
     
 ]
