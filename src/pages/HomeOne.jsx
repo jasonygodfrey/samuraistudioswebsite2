@@ -97,9 +97,9 @@ const scrollToContact = () => {
             }} />
             <Slider data={dataSlider} /> 
 
-             {/* <div style={projectStyle}>
+              <div style={projectStyle}>
                 <Project data={dataProject} />
-            </div> */}
+            </div> 
             <About data={dataAbout} style={{ position: 'relative', top: '-150px' }} />
           {/*  <Blog data={dataBlog} /> */}
             {/* Uncomment these sections if needed */}
