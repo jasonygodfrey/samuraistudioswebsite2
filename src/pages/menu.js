@@ -1,7 +1,7 @@
 const menus = [
     {
         id: 1,
-        name: 'Home',
+        name: '',
         links: '#',
        /*
 namesub: [

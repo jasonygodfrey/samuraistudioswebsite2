@@ -7,7 +7,7 @@ const dataSlider = [
     {
         id: 1,
         title: 'The Future of Web Development with Three.js & React',
-        desc : 'We sculpt interactive web experiences that captivate and redefine user engagement.',
+        desc : 'I am a full-stack software engineer specializing in creating immersive web and game experiences. My work blends innovation and creativity, bringing your digital visions to life.',
         bgImg: bgImg1,
         img : img1
     },
@@ -21,7 +21,7 @@ const dataSlider = [
     {
         id: 3,
         title: 'The Future of Web Development',
-        desc : 'We sculpt interactive web experiences that captivate and redefine user engagement. Specialized Services with Three.js & React.',
+        desc : 'I am a full-stack software engineer specializing in creating immersive web and game experiences. My work blends innovation and creativity, bringing your digital visions to life.',
         bgImg: bgImg3,
         classAction: 'three'
     },
