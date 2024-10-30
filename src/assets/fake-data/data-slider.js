@@ -3,10 +3,11 @@ import bgImg2 from '../images/background/bg-3.jpg';
 import bgImg3 from '../images/background/bg-4.jpg';
 import img1 from '../images/common/itemslider.png';
 
+
 const dataSlider = [
     {
         id: 1,
-        title: 'The Future of Web Development with Three.js & React',
+        title: 'The Future of Web Development',
         desc : 'I am a full-stack software engineer specializing in creating immersive web and game experiences. My work blends innovation and creativity, bringing your digital visions to life.',
         bgImg: bgImg1,
         img : img1
@@ -20,11 +21,34 @@ const dataSlider = [
     },
     {
         id: 3,
-        title: 'The Future of Web Development',
-        desc : 'I am a full-stack software engineer specializing in creating immersive web and game experiences. My work blends innovation and creativity, bringing your digital visions to life.',
+        title: (
+            <>
+                <img
+                    src="/logo69.png"
+                    alt="Logo 69"
+                    style={{
+                        width: '400px',
+                        height: 'auto',
+                        filter: 'drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.5))'
+                    }}
+                /> 
+                <img
+                    src="/logo.png"
+                    alt="Logo"
+                    style={{
+                        width: '500px',
+                        height: 'auto',
+                        filter: 'drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.5))'
+                    }}
+                />
+                
+            </>
+        ),
+        desc: 'Web and Game Developer Portfolio',
         bgImg: bgImg3,
         classAction: 'three'
-    },
+    }
+,    
     {
         id: 4,
         title: 'CYbox nft collectionS for everyone',

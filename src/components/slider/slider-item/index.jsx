@@ -1,21 +1,35 @@
-import React , {useState} from 'react';
+import React, { useState } from 'react'; 
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import ModalVideo from 'react-modal-video';
-import 'react-modal-video/scss/modal-video.scss' ;
-// import { Modal } from "react-bootstrap";
-import './styles.scss'
+import 'react-modal-video/scss/modal-video.scss';
+import './styles.scss';
 
 SliderItem.propTypes = {
-    item : PropTypes.object,
+    item: PropTypes.object,
 };
 
 function SliderItem(props) {
-    const {item} = props;
+    const { item } = props;
+    const [isOpen, setOpen] = useState(false);
+    const [hover, setHover] = useState(null);
 
-    const [isOpen, setOpen] = useState(false)
+    const buttonStyles = {
+        color: 'white',
+        textShadow: '0px 0px 8px rgba(173, 216, 230, 1)',  // Light blue text shadow
+        backgroundColor: 'transparent',
+        padding: '10px 20px',
+        fontSize: '28px',
+        fontFamily: '"Open Sans", sans-serif', // Font family set to Open Sans
+        fontWeight: 600,  // Font weight set to 600
+        cursor: 'pointer',
+        transition: 'background-color 0.3s ease, text-shadow 0.3s ease',
+        border: 0,
+    };
 
-    // const [modalShow, setModalShow] = useState(false);
+    const hoverStyles = {
+        backgroundColor: 'linear-gradient(90deg, #ADD8E6, #1E90FF)',  // Light blue to dark blue transition
+        textShadow: '0px 0px 12px rgba(30, 144, 255, 1)',  // Darker blue glow on hover
+    };
 
     return (
         <div className={`box-slider ${item.classAction}`}>
@@ -28,86 +42,36 @@ function SliderItem(props) {
                                 <h1 className="title">{item.title}</h1>
                                 <p className="sub-title">{item.desc}</p>
                                 <div className="wrap-btn">
-                                    <Link to="#" className="tf-button-st2 btn-effect" data-toggle="modal" data-target="#popup_bid"><span className="effect">Contact</span></Link>
-                      
+                                    <button
+                                        style={hover === 'about' ? { ...buttonStyles, ...hoverStyles } : buttonStyles}
+                                        onMouseEnter={() => setHover('about')}
+                                        onMouseLeave={() => setHover(null)}
+                                        onClick={() => setOpen(true)}
+                                    >
+                                        About
+                                    </button>
+                                    <button
+                                        style={hover === 'work' ? { ...buttonStyles, ...hoverStyles } : buttonStyles}
+                                        onMouseEnter={() => setHover('work')}
+                                        onMouseLeave={() => setHover(null)}
+                                        onClick={() => alert("Work Section")}
+                                    >
+                                        Work
+                                    </button>
+                                    <button
+                                        style={hover === 'contact' ? { ...buttonStyles, ...hoverStyles } : buttonStyles}
+                                        onMouseEnter={() => setHover('contact')}
+                                        onMouseLeave={() => setHover(null)}
+                                        onClick={() => alert("Contact Section")}
+                                    >
+                                        Contact
+                                    </button>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
-
-            <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="i7EMACWuErA" onClose={() => setOpen(false)} />
-
-            {/* <Modal
-                show={modalShow}
-                onHide={setModalShow}
-            >
-            <Modal.Header closeButton></Modal.Header>
-
-                <div className="modal-body center">
-                                <div className="box-wallet-inner">
-                                    <div className="sc-box">
-                                        <div className="img">
-                                            <img src="assets/images/common/icon-1.png" alt="Crybox" />
-                                        </div>
-                                        <h6 className="heading"><a href="#">Meta Mask</a> </h6>
-                                        <p className="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-                                    </div>
-                                    <div className="sc-box">
-                                        <div className="img">
-                                            <img src="assets/images/common/icon-6.png" alt="Crybox" />
-                                        </div>
-                                        <h6 className="heading"><a href="#"> Bitski</a></h6>
-                                        <p className="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-                                    </div>
-                                    <div className="sc-box">
-                                        <div className="img">
-                                            <img src="assets/images/common/vector.png" alt="Crybox" />
-                                        </div>
-                                        <h6 className="heading"><a href="#">Fortmatic</a> </h6>
-                                        <p className="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-                                    </div>
-                                    <div className="sc-box">
-                                        <div className="img">
-                                            <img src="assets/images/common/icon-2.png" alt="Crybox" />
-                                        </div>
-                                        <h6 className="heading"><a href="#">Coinbase Wallet</a> </h6>
-                                        <p className="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-                                    </div>
-                                    <div className="sc-box">
-                                        <div className="img">
-                                            <img src="assets/images/common/icon-3.png" alt="Crybox" />
-                                        </div>
-                                        <h6 className="heading"><a href="#">Authereum</a> </h6>
-                                        <p className="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-                                    </div>
-                                    <div className="sc-box">
-                                        <div className="img">
-                                            <img src="assets/images/common/icon-4.png" alt="Crybox" />
-                                        </div>
-                                        <h6 className="heading"><a href="#">Kaikas</a> </h6>
-                                        <p className="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-                                    </div>
-                                </div>  
-                            </div>
-            </Modal> */}
-
-            {/* <div className="modal fade popup" id="popup_bid" tabindex="-1" role="dialog" aria-hidden="true">
-            <div className="modal-dialog modal-dialog-centered" role="document">
-                <div className="modal-content">
-                    <div className="header-popup">
-                        <h5>Connect to a wallet</h5>
-                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    
-                    
-                </div>
-            </div>
-        </div> */}
         </div>
     );
 }

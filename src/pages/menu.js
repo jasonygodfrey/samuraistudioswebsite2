@@ -26,7 +26,7 @@ namesub: [
     ,
     {
         id: 2,
-        name: 'About',
+        name: '',
         links: '#',
       /*  namesub: [
             {
@@ -69,7 +69,7 @@ namesub: [
     },
     {
         id: 3,
-        name: 'Services',
+        name: '',
         links: '#',
        /* namesub: [
             {
@@ -86,7 +86,7 @@ namesub: [
     },
     {
         id: 4,
-        name: 'Productions',
+        name: '',
         links: '#',
         /* namesub: [
             {
@@ -120,7 +120,7 @@ namesub: [
     },*/
     {
         id: 6,
-        name: 'Contact',
+        name: '',
         links: '#'
     },
     

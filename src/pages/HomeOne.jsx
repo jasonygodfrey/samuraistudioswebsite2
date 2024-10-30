@@ -70,6 +70,10 @@ function HomeOne(props) {
     const homeStyle = {
         position: 'relative',
         zIndex: 1,
+        background: 'radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.5))', // Creates a vignette effect
+        minHeight: '100vh', // Ensure it covers the full viewport height
+        background: 'radial-gradient(circle, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.7) 100%)',
+
     };
 
     // In your HomeOne or equivalent component
@@ -94,13 +98,15 @@ const scrollToContact = () => {
                 height: 'auto',
                 zIndex: -1,
                 objectFit: 'cover',
+                
             }} />
             <Slider data={dataSlider} /> 
 
               <div style={projectStyle}>
-                <Project data={dataProject} />
+              
             </div> 
             <About data={dataAbout} style={{ position: 'relative', top: '-150px' }} />
+            <Project data={dataProject} />
           {/*  <Blog data={dataBlog} /> */}
             {/* Uncomment these sections if needed */}
             {/* <RoadMap data={dataRoadmap} /> */}
@@ -109,7 +115,7 @@ const scrollToContact = () => {
             {/* <Partner data={dataPartner} /> */}
             {/* <FAQ data={dataFaq} /> */}
             <div>
-            <PageTitle title='Contact ' />
+            <PageTitle title=' ' />
 
             <section className="tf-section tf-contact">
             <div className="container">
@@ -117,11 +123,11 @@ const scrollToContact = () => {
         <div className="col-12">
             <div className="content-about m-b50 mobie-40" data-aos="fade-right" data-aos-duration="800">
                 <div className="tf-title st2 m-b17">
-                    <h4 className="title">Contact Us</h4>
+                    <h4 className="title">Contact </h4>
                 </div>
-                <p className="m-r-40">Thank you for your interest. Please contact us if you have any interest or question regarding web design, graphic design, digital marketing, and other design and general web-related services we provide. We will propose an appropriate service according to what our client needs. (Initial consultation is free.) We will respond to your inquiry as soon as possible.</p>
+                <p className="m-r-40"></p>
             </div>
-            <form action="contact/contact-process.php" className="form-contact" id="contactform" data-aos="fade-right" data-aos-duration="800">
+         {/*    <form action="contact/contact-process.php" className="form-contact" id="contactform" data-aos="fade-right" data-aos-duration="800">
                 <fieldset>
                     <input type="text" name="name" id="name" placeholder="Name" />
                 </fieldset>
@@ -134,13 +140,13 @@ const scrollToContact = () => {
                 <fieldset>
                     <textarea placeholder="Type your Message" rows="5" tabIndex="4" name="message" className="message" id="message"></textarea>
                 </fieldset>
-                <button className="tf-button btn-effect" type="submit" style={{ display: 'block', margin: '0 auto' }}>
+                <button className="tf-button btn-effect" type="submit" style={{ display: 'block', margin: '0 auto' }}> 
     <span className="boder-fade"></span>
     <span className="effect">Send Message</span>
 </button>
 
-            </form>
-        </div>
+            </form>                   */}
+        </div> 
 
 
                      {/*  <div className="col-xl-7  col-md-12">
@@ -232,9 +238,9 @@ const scrollToContact = () => {
             <div className="footer-bottom">
                 <div className="container">
                     <div className="wrap-fx">
-                        <div className="Copyright">
-                            <p>Samurai Studios 2024 - All rights reserved</p>
-                        </div>
+                        
+                            <p>Thank you for visiting!⊂(◉‿◉)つ</p>
+                      
                      {/*   <ul className="list">
                             <li>
                                 <Link to="#">Privacy Policy</Link>
