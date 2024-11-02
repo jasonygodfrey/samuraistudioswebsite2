@@ -48,7 +48,7 @@ function SliderItem(props) {
                                         onMouseLeave={() => setHover(null)}
                                         onClick={() => setOpen(true)}
                                     >
-                                        About
+                                    
                                     </button>
                                     <button
                                         style={hover === 'work' ? { ...buttonStyles, ...hoverStyles } : buttonStyles}
@@ -56,7 +56,7 @@ function SliderItem(props) {
                                         onMouseLeave={() => setHover(null)}
                                         onClick={() => alert("Work Section")}
                                     >
-                                        Work
+                                        
                                     </button>
                                     <button
                                         style={hover === 'contact' ? { ...buttonStyles, ...hoverStyles } : buttonStyles}
@@ -64,7 +64,7 @@ function SliderItem(props) {
                                         onMouseLeave={() => setHover(null)}
                                         onClick={() => alert("Contact Section")}
                                     >
-                                        Contact
+                                        
                                     </button>
                                 </div>
                             </div>

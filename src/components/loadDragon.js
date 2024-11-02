@@ -8,7 +8,7 @@ export function loadDragon(scene, mixers, animationTriggered, animationsRef) {
     const dragon = gltf.scene;
     dragon.scale.set(10000, 10000, 10000);
     dragon.position.set(0, -250, -300);
-    scene.add(dragon);
+    //scene.add(dragon);
     
     const dragonMixer = new THREE.AnimationMixer(dragon);
     mixers.current.push(dragonMixer);

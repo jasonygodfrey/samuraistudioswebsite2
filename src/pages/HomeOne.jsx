@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 
+
 // Import styles and components
 import '../scss/components/section.scss';
 import '../scss/components/box.scss';

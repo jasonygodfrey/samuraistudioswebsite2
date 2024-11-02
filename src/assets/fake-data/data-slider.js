@@ -23,28 +23,24 @@ const dataSlider = [
         id: 3,
         title: (
             <>
-                <img
-                    src="/logo69.png"
-                    alt="Logo 69"
-                    style={{
-                        width: '400px',
-                        height: 'auto',
-                        filter: 'drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.5))'
-                    }}
-                /> 
-                <img
-                    src="/logo.png"
-                    alt="Logo"
-                    style={{
-                        width: '500px',
-                        height: 'auto',
-                        filter: 'drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.5))'
-                    }}
-                />
-                
+                <div style={{ textAlign: 'center', marginBottom: '10px' }}>
+                    <img
+                        src="/logo69.png"
+                        alt="Logo 69"
+                        style={{
+                            width: '550px',
+                            height: 'auto',
+                            filter: 'drop-shadow(0px 0px 4px rgba(173, 216, 230, 0.6))',
+                            display: 'block',  // Ensures image takes its own line
+                            margin: '25px auto'
+                        }}
+                    />
+                </div>
+               
             </>
         ),
-        desc: 'Web and Game Developer Portfolio',
+        
+        desc: 'Game and Web Development',
         bgImg: bgImg3,
         classAction: 'three'
     }

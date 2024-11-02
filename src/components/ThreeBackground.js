@@ -1,3 +1,4 @@
+// ThreeBackground.js
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { setupScene } from './setupScene';
@@ -13,7 +14,7 @@ const ThreeBackground = (props) => {
   const animationsRef = useRef([]); // Array to hold all animations
   const currentAnimationIndex = useRef(0); // Current animation index
   const lastMousePosition = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
-  const cameraRotation = useRef({ x: 0, y: 0 });
+  const cameraRotation = useRef({ x: 0, y: Math.PI }); // Initialize Y rotation to 180 degrees
 
   const raycaster = new THREE.Raycaster();
   const mouse = new THREE.Vector2();
@@ -67,7 +68,7 @@ const ThreeBackground = (props) => {
     });
     const jasongodfreyMesh = new THREE.Mesh(jasongodfreyGeometry, jasongodfreyMaterial);
     jasongodfreyMesh.position.set(0, -30, -270);
-    //scene.add(jasongodfreyMesh);
+    // scene.add(jasongodfreyMesh);
 
     // Add a point light to illuminate the stars
     const pointLight = new THREE.PointLight(0xffffff, 1, 1000);
@@ -79,7 +80,7 @@ const ThreeBackground = (props) => {
     const circleMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
     const circleMesh = new THREE.Mesh(circleGeometry, circleMaterial);
     circleMesh.position.set(0, 0, -200);
-    //scene.add(circleMesh);
+    // scene.add(circleMesh);
 
     // Load Dragon and Portal
     loadDragon(scene, mixers, animationTriggered, animationsRef, currentAnimationIndex);
@@ -131,11 +132,15 @@ const ThreeBackground = (props) => {
       sprite.userData = { url, originalColor: 'white', texture, canvas, context };
 
       // Add the sprite to the scene
-      //scene.add(sprite);
+      // scene.add(sprite);
 
       // Interaction mesh for the text
       const interactionGeometry = new THREE.PlaneGeometry(100, 50); // Increase the size of the clickable area
-      const interactionMaterial = new THREE.MeshBasicMaterial({ visible: false, color: 0x00ff00, wireframe: true }); // Make the interaction mesh visible for debugging
+      const interactionMaterial = new THREE.MeshBasicMaterial({
+        visible: false,
+        color: 0x00ff00,
+        wireframe: true,
+      }); // Make the interaction mesh visible for debugging
       const interactionMesh = new THREE.Mesh(interactionGeometry, interactionMaterial);
       interactionMesh.position.set(x, y, z);
       interactionMesh.userData = sprite.userData;
@@ -155,57 +160,92 @@ const ThreeBackground = (props) => {
       mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
       raycaster.setFromCamera(mouse, camera);
 
-      const intersects = raycaster.intersectObjects([contact.interactionMesh, github.interactionMesh, projects.interactionMesh]);
+      const intersects = raycaster.intersectObjects([
+        contact.interactionMesh,
+        github.interactionMesh,
+        projects.interactionMesh,
+      ]);
 
       if (intersects.length > 0) {
         const intersectedObject = intersects[0].object;
-        intersectedObject.userData.context.clearRect(0, 0, intersectedObject.userData.canvas.width, intersectedObject.userData.canvas.height);
+        intersectedObject.userData.context.clearRect(
+          0,
+          0,
+          intersectedObject.userData.canvas.width,
+          intersectedObject.userData.canvas.height
+        );
         intersectedObject.userData.context.fillStyle = 'blue';
-        intersectedObject.userData.context.fillText(intersectedObject.userData.url === contact.interactionMesh.userData.url ? 'Contact' : intersectedObject.userData.url === github.interactionMesh.userData.url ? 'GitHub' : 'Projects', 0, intersectedObject.userData.canvas.height);
+        intersectedObject.userData.context.fillText(
+          intersectedObject.userData.url === contact.interactionMesh.userData.url
+            ? 'Contact'
+            : intersectedObject.userData.url === github.interactionMesh.userData.url
+            ? 'GitHub'
+            : 'Projects',
+          0,
+          intersectedObject.userData.canvas.height
+        );
         intersectedObject.userData.texture.needsUpdate = true;
       } else {
         [contact, github, projects].forEach((obj) => {
-          obj.sprite.userData.context.clearRect(0, 0, obj.sprite.userData.canvas.width, obj.sprite.userData.canvas.height);
+          obj.sprite.userData.context.clearRect(
+            0,
+            0,
+            obj.sprite.userData.canvas.width,
+            obj.sprite.userData.canvas.height
+          );
           obj.sprite.userData.context.fillStyle = 'white';
-          obj.sprite.userData.context.fillText(obj.sprite.userData.url === contact.interactionMesh.userData.url ? 'Contact' : obj.sprite.userData.url === github.interactionMesh.userData.url ? 'GitHub' : 'Projects', 0, obj.sprite.userData.canvas.height);
+          obj.sprite.userData.context.fillText(
+            obj.sprite.userData.url === contact.interactionMesh.userData.url
+              ? 'Contact'
+              : obj.sprite.userData.url === github.interactionMesh.userData.url
+              ? 'GitHub'
+              : 'Projects',
+            0,
+            obj.sprite.userData.canvas.height
+          );
           obj.sprite.userData.texture.needsUpdate = true;
         });
       }
     };
 
     const handleMouseClick = (event) => {
-        if (rendererRef.current) {
-          const canvasBounds = rendererRef.current.getBoundingClientRect();
-          mouse.x = ((event.clientX - canvasBounds.left) / canvasBounds.width) * 2 - 1;
-          mouse.y = -((event.clientY - canvasBounds.top) / canvasBounds.height) * 2 + 1;
-          raycaster.setFromCamera(mouse, camera);
-      
-          // Check for intersections with your interaction objects
-          const intersects = raycaster.intersectObjects([contact.interactionMesh, github.interactionMesh, projects.interactionMesh]);
-      
-          if (intersects.length > 0) {
-            const intersectedObject = intersects[0].object;
-            if (intersectedObject.userData.url) {
-              window.location.href = intersectedObject.userData.url;
-            }
+      if (rendererRef.current) {
+        const canvasBounds = rendererRef.current.getBoundingClientRect();
+        mouse.x = ((event.clientX - canvasBounds.left) / canvasBounds.width) * 2 - 1;
+        mouse.y = -((event.clientY - canvasBounds.top) / canvasBounds.height) * 2 + 1;
+        raycaster.setFromCamera(mouse, camera);
+
+        // Check for intersections with your interaction objects
+        const intersects = raycaster.intersectObjects([
+          contact.interactionMesh,
+          github.interactionMesh,
+          projects.interactionMesh,
+        ]);
+
+        if (intersects.length > 0) {
+          const intersectedObject = intersects[0].object;
+          if (intersectedObject.userData.url) {
+            window.location.href = intersectedObject.userData.url;
           }
-      
         }
-      };
-      
-      
+      }
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('click', handleMouseClick);
 
     const clock = new THREE.Clock();
-    let angle = (62 * Math.PI) / 180; // Start angle at 30 degrees
+    let angle = (62 * Math.PI) / 180; // Start angle at 62 degrees
     let direction = 1; // 1 for forward, -1 for backward
-    const radius = 300; // Radius for circular motion
+    const radius = 0; // Radius for circular motion
     const initialCameraZ = -400; // Initial position further back
-    const minAngle = (60 * Math.PI) / 180; // Minimum angle for 30 degrees
-    const maxAngle = (120 * Math.PI) / 180; // Maximum angle for 150 degrees
+    const minAngle = (60 * Math.PI) / 180; // Minimum angle for 60 degrees
+    const maxAngle = (120 * Math.PI) / 180; // Maximum angle for 120 degrees
 
-    camera.position.set(0, 50, initialCameraZ); // Set initial camera position further back
+    // Set initial camera position and apply rotation
+    camera.position.set(0, 50, initialCameraZ);
+    camera.rotation.y = cameraRotation.current.y; // Apply initial Y rotation (180 degrees)
+
     const animate = () => {
       requestAnimationFrame(animate);
       const delta = clock.getDelta();
@@ -220,7 +260,17 @@ const ThreeBackground = (props) => {
       mouse.y = currentMousePosition.current.y;
       raycaster.setFromCamera(mouse, camera);
 
-      handleStarHover(stars, raycaster, mouse, mouseMovement, delta, k, d, damping, returnSpeed);
+      handleStarHover(
+        stars,
+        raycaster,
+        mouse,
+        mouseMovement,
+        delta,
+        k,
+        d,
+        damping,
+        returnSpeed
+      );
 
       angle += delta * 0.05 * direction; // Adjust speed of rotation
 
@@ -229,12 +279,13 @@ const ThreeBackground = (props) => {
       }
 
       camera.position.x = radius * Math.cos(angle) + mouseMovement.current.x * 50; // Add mouse parallax
-      camera.position.z = initialCameraZ + radius * Math.sin(angle) + mouseMovement.current.y * 50; // Add mouse parallax
+      camera.position.z =
+        initialCameraZ + radius * Math.sin(angle) + mouseMovement.current.y * 50; // Add mouse parallax
       camera.position.y = -50 + mouseMovement.current.y * 50; // Adjust for vertical mouse movement
       camera.lookAt(circleMesh.position);
 
       // Update star positions to animate in a spiral
-      stars.forEach(star => {
+      stars.forEach((star) => {
         const spiralAngle = delta * 1.0; // Increase the factor to make the spiral faster
         star.angle += spiralAngle;
         star.spiralRadius += spiralAngle * 1.0; // Increase the factor for faster spiral expansion
@@ -251,7 +302,7 @@ const ThreeBackground = (props) => {
     return () => {
       cleanUpKeyPress();
       window.removeEventListener('mousemove', handleMouseMove);
-     // window.removeEventListener('click', handleMouseClick);
+      window.removeEventListener('click', handleMouseClick);
       window.removeEventListener('mousemove', onMouseMove);
       mixers.current.forEach((mixer) => mixer.stopAllAction());
       renderer.dispose();
@@ -262,11 +313,10 @@ const ThreeBackground = (props) => {
     targetMousePosition.current.x = (event.clientX / window.innerWidth) * 2 - 1;
     targetMousePosition.current.y = -(event.clientY / window.innerHeight) * 2 + 1;
     mouseMovement.current.x = (event.clientX - window.innerWidth / 2) * 0.001;
-    mouseMovement.current.y = (event.clientX - window.innerHeight / 2) * 0.001;
+    mouseMovement.current.y = (event.clientY - window.innerHeight / 2) * 0.001;
   };
 
   window.addEventListener('mousemove', onMouseMove, true);
-  //window.addEventListener('click', handleMouseClick);
 
   return <canvas ref={rendererRef} {...props} />;
 };
