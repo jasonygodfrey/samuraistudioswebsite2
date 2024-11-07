@@ -1,188 +1,42 @@
-import React, { useRef, useState, useEffect } from 'react';
-
-
-// Import styles and components
-import '../scss/components/section.scss';
-import '../scss/components/box.scss';
-import Slider from '../components/slider';
-import dataSlider from '../assets/fake-data/data-slider';
-import About from '../features/about';
-import Project from '../features/project';
-import dataProject from '../assets/fake-data/dataProject';
-import dataAbout from '../assets/fake-data/data-about';
-import RoadMap from '../features/roadmap';
-import dataRoadmap from '../assets/fake-data/data-roadmap';
-import Work from '../features/work';
-import dataWork from '../assets/fake-data/data-work';
-import Team from '../features/team';
-import dataTeam from '../assets/fake-data/data-team';
-import Blog from '../features/blog';
-import dataBlog from '../assets/fake-data/data-blog';
-import Partner from '../features/partner';
-import dataPartner from '../assets/fake-data/data-partner';
-import FAQ from '../features/faq';
-import dataFaq from '../assets/fake-data/data-faq';
-import ThreeBackground from '../components/ThreeBackground';
-import PageTitle from '../components/pagetitle';
+import React , { useState ,useEffect } from 'react';
+import './styles.scss';
 import { Link } from 'react-router-dom'
-import img1 from '../assets/images/background/bg-ft.png';
-import img2 from '../assets/images/background/bg-ft2.png';
+
+import img1 from '../../assets/images/background/bg-ft.png'
+import img2 from '../../assets/images/background/bg-ft2.png'
 
 
-function HomeOne(props) {
-    const threeBackgroundRef = useRef(null);
+function Footer(props) {
 
-    // State to hold the dynamic style for the Project component
-    const [projectStyle, setProjectStyle] = useState({ position: 'relative', top: '-400px' });
-    const [isVisible, setIsVisible] = useState(false);  // State for visibility of scroll button
+    const [isVisible, setIsVisible] = useState(false);
 
-    // Effect to update style based on window size
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    };
+  
     useEffect(() => {
-        const updateStyle = () => {
-            if (window.innerWidth <= 768) {
-                setProjectStyle({ position: 'relative', top: '-150px' });
-            } else {
-                setProjectStyle({ position: 'relative', top: '-400px' });
-            }
-        };
-
-        const toggleVisibility = () => {  // Check if scroll button should be visible
-            setIsVisible(window.pageYOffset > 500);
-        };
-
-        window.addEventListener('resize', updateStyle);
-        window.addEventListener('scroll', toggleVisibility);
-
-        updateStyle();  // Initial style update
-
-        return () => {
-            window.removeEventListener('resize', updateStyle);
-            window.removeEventListener('scroll', toggleVisibility);
-        };
+      const toggleVisibility = () => {
+        if (window.pageYOffset > 500) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      };
+  
+      window.addEventListener("scroll", toggleVisibility);
+  
+      return () => window.removeEventListener("scroll", toggleVisibility);
     }, []);
 
-    const scrollToTop = () => {  // Scroll to top functionality
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    };
-
-    const homeStyle = {
-        position: 'relative',
-        zIndex: 1,
-        background: 'radial-gradient(circle, rgba(0,0,0,0) 60%, rgba(0,0,0,0.5))', // Creates a vignette effect
-        minHeight: '100vh', // Ensure it covers the full viewport height
-        background: 'radial-gradient(circle, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.7) 100%)',
-
-    };
-
-    // In your HomeOne or equivalent component
-const contactFormRef = useRef(null);  // Set this ref on your contact form
-
-const scrollToContact = () => {
-    contactFormRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-};
-
-
-    
     return (
-        <div className='home-1' style={homeStyle}>
-         {/*    <ThreeBackground style={{
-                position: 'fixed',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                minWidth: '100%',
-                minHeight: '100%',
-                width: 'auto',
-                height: 'auto',
-                zIndex: -1,
-                objectFit: 'cover',
-                
-            }} /> */}
-            <Slider data={dataSlider} /> 
-
-              <div style={projectStyle}>
-              
-            </div> 
-            <About data={dataAbout} style={{ position: 'relative', top: '-150px' }} />
-            {/*   <Project data={dataProject} /> */}
-          {/*  <Blog data={dataBlog} /> */}
-            {/* Uncomment these sections if needed */}
-            {/* <RoadMap data={dataRoadmap} /> */}
-            {/* <Work data={dataWork} /> */}
-            {/* <Team data={dataTeam} /> */}
-            {/* <Partner data={dataPartner} /> */}
-            {/* <FAQ data={dataFaq} /> */}
-            <div>
-            <PageTitle title=' ' />
-
-            <section className="tf-section tf-contact">
-            <div className="container">
-    <div className="row">
-        <div className="col-12">
-            <div className="content-about m-b50 mobie-40" data-aos="fade-right" data-aos-duration="800">
-                <div className="tf-title st2 m-b17">
-                    <h4 className="title">Contact </h4>
-                </div>
-                <p className="m-r-40"></p>
-            </div>
-         {/*    <form action="contact/contact-process.php" className="form-contact" id="contactform" data-aos="fade-right" data-aos-duration="800">
-                <fieldset>
-                    <input type="text" name="name" id="name" placeholder="Name" />
-                </fieldset>
-                <fieldset>
-                    <input type="email" name="mail" id="mail" placeholder="Email Address" />
-                </fieldset>
-                <fieldset>
-                    <input type="number" name="phone" id="phone" placeholder="Phone" />
-                </fieldset>
-                <fieldset>
-                    <textarea placeholder="Type your Message" rows="5" tabIndex="4" name="message" className="message" id="message"></textarea>
-                </fieldset>
-                <button className="tf-button btn-effect" type="submit" style={{ display: 'block', margin: '0 auto' }}> 
-    <span className="boder-fade"></span>
-    <span className="effect">Send Message</span>
-</button>
-
-            </form>                   */}
-        </div> 
-
-
-                     {/*  <div className="col-xl-7  col-md-12">
-                            <div className="contact-details" data-aos="fade-left" data-aos-duration="800">
-                                <div className="adress wrap-fx">
-                                    <div className="location">
-                                        <h6>Location</h6>
-                                        <ul>
-                                            <li>2163 Phillips Gap Rd West Jefferson,NC, 28694</li>
-                                        </ul>
-                                    </div>
-                                    <div className="mail">
-                                        <h6>Contact Us</h6>
-                                        <ul>
-                                            <li>+1 666 8888</li>
-                                            <li>Info.avitex@gmail.com</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="flat-map wow fadeIn animated" data-wow-delay="0.3ms" data-wow-duration="1000ms">
-                                    <iframe title='map' className="map-content" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4457.30210514409!2d144.9550716623184!3d-37.818421643591336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4dd5a05d97%3A0x3e64f855a564844d!2s121%20King%20St%2C%20Melbourne%20VIC%203000%2C%20%C3%9Ac!5e0!3m2!1svi!2s!4v1631871760998!5m2!1svi!2s" width="1720" height="655" allowFullScreen="" loading="lazy" />
-                                </div>
-                            </div>
-                        </div> */}
-                    </div>
-                </div>
-            </section>
-        </div>
-
-
         <footer id="footer">
             <div className="footer-main">
                 <img src={img1} alt="" className="bg1" />
                 <img src={img2} alt="" className="bg2" />
-               {/*  <div className="container">
+                <div className="container">
                     <ul className="widget-social">
                         <li>
                             <Link to="#">
@@ -227,22 +81,20 @@ const scrollToContact = () => {
                             </Link>
                         </li>
                     </ul>
-                  
-                  {/*  <h5 className="heading">don’t miss out, join now for early access</h5>
-                    <p>Maewrwedfdecenas sit pretium, cras in. In quisque sem id eget. In vel gravida ut </p>
+
                     <form action="#" id="subscribe-form">
                         <input type="email" placeholder="Enter your email address" required="" id="subscribe-email" />
                         <button className="tf-button-st2 btn-effect" type="submit" id="subscribe-button"> <span className="effect">Subscribe</span></button>
-                    </form> 
-                </div>  */}
-                    </div> 
+                    </form>
+                </div>
+            </div>
             <div className="footer-bottom">
                 <div className="container">
                     <div className="wrap-fx">
-                        
-                            <p>Thank you for visiting!⊂(◉‿◉)つ</p>
-                      
-                     {/*   <ul className="list">
+                        <div className="Copyright">
+                            <p>CYBOX 2022- ALL rights reserved</p>
+                        </div>
+                        <ul className="list">
                             <li>
                                 <Link to="#">Privacy Policy</Link>
                             </li>
@@ -256,22 +108,17 @@ const scrollToContact = () => {
                                 <Link to="/contact">Contact Us</Link>
                             </li>
                         </ul>
-        */}
                     </div>
                 </div>
                 
             </div>
 
             {
-                isVisible &&
-                <Link onClick={scrollToTop} to='#' id="scroll-top"></Link>
+                isVisible && 
+                <Link onClick={scrollToTop}  to='#' id="scroll-top"></Link>
             }
         </footer>
-
-
-        
-        </div>
     );
 }
 
-export default HomeOne;
+export default Footer;
