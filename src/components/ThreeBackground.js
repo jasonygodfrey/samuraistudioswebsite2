@@ -237,10 +237,10 @@ const ThreeBackground = (props) => {
     const clock = new THREE.Clock();
     let angle = (62 * Math.PI) / 180; // Start angle at 62 degrees
     let direction = 1; // 1 for forward, -1 for backward
-    const radius = 0; // Radius for circular motion
-    const initialCameraZ = -400; // Initial position further back
+    const radius = 180; // Radius for circular motion
+    const initialCameraZ = 0; // Initial position further back
     const minAngle = (60 * Math.PI) / 180; // Minimum angle for 60 degrees
-    const maxAngle = (120 * Math.PI) / 180; // Maximum angle for 120 degrees
+    const maxAngle = (320 * Math.PI) / 180; // Maximum angle for 120 degrees
 
     // Set initial camera position and apply rotation
     camera.position.set(0, 50, initialCameraZ);

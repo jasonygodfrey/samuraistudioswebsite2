@@ -88,7 +88,7 @@ const scrollToContact = () => {
     
     return (
         <div className='home-1' style={homeStyle}>
-         {/*    <ThreeBackground style={{
+             <ThreeBackground style={{
                 position: 'fixed',
                 top: '50%',
                 left: '50%',
@@ -100,7 +100,7 @@ const scrollToContact = () => {
                 zIndex: -1,
                 objectFit: 'cover',
                 
-            }} /> */}
+            }} /> 
             <Slider data={dataSlider} /> 
 
               <div style={projectStyle}>
@@ -116,7 +116,7 @@ const scrollToContact = () => {
             {/* <Partner data={dataPartner} /> */}
             {/* <FAQ data={dataFaq} /> */}
             <div>
-            <PageTitle title=' ' />
+       
 
             <section className="tf-section tf-contact">
             <div className="container">
@@ -124,9 +124,38 @@ const scrollToContact = () => {
         <div className="col-12">
             <div className="content-about m-b50 mobie-40" data-aos="fade-right" data-aos-duration="800">
                 <div className="tf-title st2 m-b17">
-                    <h4 className="title">Contact </h4>
+                    <h4 className="title" style={{ textAlign: "center" }}>Contact </h4>
                 </div>
-                <p className="m-r-40"></p>
+                <p style={{ textAlign: "center" }}>Get in touch for more info or collaborations:</p>
+
+                <p className="m-r-40"><ul className="widget-social">
+    <li>
+        <Link to="#">
+            <img src="/path/to/linkedin.png" alt="LinkedIn" width="24" height="24" />
+        </Link>
+    </li>
+    <li>
+        <Link to="#">
+            <img src="/path/to/email.png" alt="Email" width="24" height="24" />
+        </Link>
+    </li>
+    <li>
+        <Link to="#">
+            <img src="/path/to/github.png" alt="GitHub" width="24" height="24" />
+        </Link>
+    </li>
+    <li>
+        <Link to="#">
+            <img src="/path/to/placeholder1.png" alt="Placeholder 1" width="24" height="24" />
+        </Link>
+    </li>
+    <li>
+        <Link to="#">
+            <img src="/path/to/placeholder2.png" alt="Placeholder 2" width="24" height="24" />
+        </Link>
+    </li>
+</ul>
+</p>
             </div>
          {/*    <form action="contact/contact-process.php" className="form-contact" id="contactform" data-aos="fade-right" data-aos-duration="800">
                 <fieldset>
@@ -180,8 +209,9 @@ const scrollToContact = () => {
 
         <footer id="footer">
             <div className="footer-main">
-                <img src={img1} alt="" className="bg1" />
-                <img src={img2} alt="" className="bg2" />
+            <img src={img1} alt="" className="bg1" style={{ opacity: 0.1 }} />
+<img src={img2} alt="" className="bg2" style={{ opacity: 0.1 }} />
+
                {/*  <div className="container">
                     <ul className="widget-social">
                         <li>
@@ -236,31 +266,13 @@ const scrollToContact = () => {
                     </form> 
                 </div>  */}
                     </div> 
-            <div className="footer-bottom">
-                <div className="container">
-                    <div className="wrap-fx">
-                        
-                            <p>Thank you for visiting!⊂(◉‿◉)つ</p>
-                      
-                     {/*   <ul className="list">
-                            <li>
-                                <Link to="#">Privacy Policy</Link>
-                            </li>
-                            <li>
-                                <Link to="#">Cookies</Link>
-                            </li>
-                            <li>
-                                <Link to="#">Terms & Conditions</Link>
-                            </li>
-                            <li>
-                                <Link to="/contact">Contact Us</Link>
-                            </li>
-                        </ul>
-        */}
-                    </div>
-                </div>
-                
-            </div>
+                    <div className="footer-bottom">
+    <div className="container">
+        <div className="wrap-fx" style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <p style={{ textAlign: "center" }}>Thank you for visiting!⊂(◉‿◉)つ</p>
+        </div>
+    </div>
+</div>
 
             {
                 isVisible &&

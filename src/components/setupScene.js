@@ -49,7 +49,7 @@ export function setupScene(rendererRef) {
   const vignettePass = new ShaderPass(VignetteShader);
   vignettePass.uniforms['offset'].value = 0.4001;
   vignettePass.uniforms['darkness'].value = -16.00001;
-  composer.addPass(vignettePass);
+  //composer.addPass(vignettePass);
 
   // Custom Desaturation Shader Pass
   const desaturationShader = {
