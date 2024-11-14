@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 import './styles.scss';
 import Button from '../../components/button';
 import AboutItem from './about-item';
-
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 
 About.propTypes = {
     data: PropTypes.array,
@@ -22,13 +24,13 @@ function loadDragon(scene) {
       (gltf) => {
         const dragon = gltf.scene;
         dragon.scale.set(20000, 20000, 20000);
-        dragon.position.set(0, -250, -300);
+        dragon.position.set(-220, -250, -500);
         dragon.rotation.set(0, 180, 0);
   
         // Set the dragon's material to wireframe
         dragon.traverse((child) => {
           if (child.isMesh) {
-            child.material.wireframe = true;
+           // child.material.wireframe = true;
             child.material.color = new THREE.Color('white'); // Set wireframe color if needed
           }
         });
@@ -53,13 +55,46 @@ function DragonCanvas() {
       const camera = new THREE.PerspectiveCamera(
         75,
         window.innerWidth / window.innerHeight,
-        0.1,
+        1,
         10000
       );
       camera.position.set(0, 0.5, 1); // Positioned to view the model
   
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setSize(500, 500); // Set canvas size
+      renderer.setSize(window.innerWidth, window.innerHeight); // Set canvas size to full window
+      renderer.setPixelRatio(window.devicePixelRatio); // Ensure high quality rendering
+
+       // Set up post-processing
+    const composer = new EffectComposer(renderer);
+    const renderPass = new RenderPass(scene, camera);
+    composer.addPass(renderPass);
+
+    // Unreal Bloom Pass parameters
+    const bloomParams = {
+      strength: 1.0, // Intensity of the bloom
+      radius: 0.4,   // Bloom radius
+      threshold: 0.1 // Threshold luminance to apply bloom
+    };
+
+    const bloomPass = new UnrealBloomPass(
+      new THREE.Vector2(window.innerWidth, window.innerHeight),
+      bloomParams.strength,
+      bloomParams.radius,
+      bloomParams.threshold
+    );
+    composer.addPass(bloomPass);
+
+     const resizeRenderer = () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+      
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      };
+      window.addEventListener('resize', resizeRenderer);
+      resizeRenderer();
+
       canvasRef.current.appendChild(renderer.domElement);
   
       // Lighting setup
@@ -85,23 +120,25 @@ function DragonCanvas() {
       const animate = () => {
         requestAnimationFrame(animate);
         renderer.render(scene, camera);
+              // Render the scene with bloom effect
+      composer.render();
       };
       animate();
   
-      // Clean up on component unmount
-      return () => {
+    // Clean up on component unmount
+    return () => {
+        window.removeEventListener('resize', resizeRenderer);
         renderer.dispose();
         scene.clear();
       };
     }, []);
-  
     return (
         <div
           ref={canvasRef}
           style={{
             width: '100%',
-            height: '100%',
-          //  marginLeft: '0px',
+            height: '100vh',
+            overflow: 'hidden',
           }}
         />
       );
@@ -152,55 +189,85 @@ function About(props) {
 
     return (
         <>
-            {dataBlocks.map((dataBlock, index) => (
-                <section
-                    key={index}
-                    className="tf-section tf-about"
-                    style={{ backgroundColor: 'black', color: 'white', ...style }}
-                >
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-xl-5 col-md-12">
-                                <div
-                                    className="content-about mobie-40"
-                                    data-aos="fade-up"
-                                    data-aos-duration="800"
-                                >
-                                    <div className="tf-title st2">
-                                        <p className="h8 sub-title">{dataBlock.subtitle}</p>
-                                        <h4 className="title">{dataBlock.title}</h4>
-                                    </div>
-                                    <p>{dataBlock.desc}</p>
-                                </div>
-                            </div>
-                            <div className="col-xl-7 col-md-12">
-                                <div
-                                    className="wrap-about"
-                                    data-aos="fade-up"
-                                    data-aos-duration="800"
-                                >
-                                    {/* Render DragonCanvas only if the title is 'About' */}
-                                    {dataBlock.title === 'About' && (
-                                        <div style={{alignItems: 'center' }}>
-                                            <AboutItem item={dataAbout.find(item => item.id === 1)} />
-                                            {dataAbout.find(item => item.id === 1).element}
-                                        </div>
-                                    )}
-                                    {/* Render other sections as AboutItem components */}
-                                    {dataBlock.title !== 'About' &&
-                                        dataAbout
-                                            .filter((item) => item.id !== 1)
-                                            .map((item) => (
-                                                <AboutItem key={item.id} item={item} />
-                                            ))}
-                                </div>
-                            </div>
-                        </div>
+          {dataBlocks.map((dataBlock, index) => (
+            <section
+              key={index}
+              className="tf-section tf-about"
+              style={{ backgroundColor: 'black', color: 'white', ...style }}
+            >
+              <div className="container">
+                <div className="row">
+                  <div className="col-xl-5 col-md-12">
+                    <div
+                      className="content-about mobie-40"
+                      data-aos="fade-up"
+                      data-aos-duration="800"
+                    >
+                      <div className="tf-title st2">
+                        <p className="h8 sub-title">{dataBlock.subtitle}</p>
+                        <h4 className="title">{dataBlock.title}</h4>
+                      </div>
+                      <p>{dataBlock.desc}</p>
                     </div>
-                </section>
-            ))}
+                  </div>
+                  <div className="col-xl-7 col-md-12">
+                    <div
+                      className="wrap-about2"
+                      data-aos="fade-up"
+                      data-aos-duration="800"
+                    >
+                      {/* Render DragonCanvas only if the title is 'About' */}
+                      {dataBlock.title === 'About' && (
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            width: '100%',
+                            height: '100%',
+                          }}
+                        >
+                          <AboutItem
+                            item={dataAbout.find((item) => item.id === 1)}
+                          />
+                          <div
+                            style={{
+                              width: '100%',
+                              maxWidth: '900px',
+                              height: '0',
+                              paddingBottom: '75%', // Adjust the aspect ratio (height / width * 100%)
+                              position: 'relative',
+                            }}
+                          >
+                            <div
+                              style={{
+                                position: 'absolute',
+                                top: '0',
+                                left: '0',
+                                width: '100%',
+                                height: '100%',
+                              }}
+                            >
+                              {dataAbout.find((item) => item.id === 1).element}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                      {/* Render other sections as AboutItem components */}
+                      {dataBlock.title !== 'About' &&
+                        dataAbout
+                          .filter((item) => item.id !== 1)
+                          .map((item) => (
+                            <AboutItem key={item.id} item={item} />
+                          ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          ))}
         </>
-    );
-}
-
-export default About;
+      );
+    }
+    
+    export default About;

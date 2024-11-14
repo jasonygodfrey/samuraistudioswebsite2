@@ -241,9 +241,11 @@ function HomeOne(props) {
                 alignItems: "center",
               }}
             >
-              <p style={{ textAlign: "center" }}>
-                Thank you for visiting!⊂(◉‿◉)つ
-              </p>
+            <p style={{ textAlign: "center" }}>
+    Thank you for visiting!
+    <img src="/smile.png" alt="smile" style={{ width: "74px", verticalAlign: "middle" }} />
+</p>
+
             </div>
           </div>
         </div>
