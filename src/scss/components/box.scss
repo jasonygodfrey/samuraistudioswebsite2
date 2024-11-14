@@ -3,7 +3,7 @@
 .countdown__item,
 .corner-box {
     @include transition3;
-    border: $border-width solid #88efef6d;
+   // border: $border-width solid #ffffffc7;
     padding: 18px 20px;
     position: relative;
     z-index: 1;

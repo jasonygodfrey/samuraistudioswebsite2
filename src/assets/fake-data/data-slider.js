@@ -30,7 +30,7 @@ const dataSlider = [
                         style={{
                             width: '550px',
                             height: 'auto',
-                            filter: 'drop-shadow(0px 0px 4px rgba(173, 216, 230, 0.6))',
+                            filter: 'drop-shadow(0px 0px 4px rgba(0, 0, 0, 1.6))',
                             display: 'block',  // Ensures image takes its own line
                             margin: '25px auto'
                         }}
@@ -40,7 +40,22 @@ const dataSlider = [
             </>
         ),
         
-        desc: 'Game and Web Development',
+        desc: (
+            <>
+                 <div
+                    style={{
+                        textAlign: 'center',
+                        marginTop: '10px',
+                        fontSize: '24px',
+                        color: '#fff',  // Adjust color if needed
+                        filter: 'drop-shadow(0px 0px 2px rgba(0, 0, 0, 2.6))',  // Same shadow effect as image
+                    }}
+                >
+                    Game and Web Development
+                </div>
+               
+            </>
+        ),
         bgImg: bgImg3,
         classAction: 'three'
     }
