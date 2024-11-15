@@ -23,7 +23,7 @@ function loadDragon(scene, camera) {
         (gltf) => {
             const dragon = gltf.scene;
             dragon.scale.set(23000, 23000, 23000);
-            dragon.position.set(0, -600, 0);
+            dragon.position.set(0, -500, 0);
             dragon.rotation.set(0, -0.2, 0);
 
             dragon.traverse((child) => {
@@ -66,7 +66,7 @@ function DragonCanvas() {
             1,
             10000
         );
-        camera.position.set(0, -40, 700);
+        camera.position.set(0, -40, 900);
 
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
@@ -137,13 +137,13 @@ const dataAbout = [
     },
     {
         id: 2,
-        title: '3d 2',
+        title: 'Partnerships, vr, ai',
         class: 'active',
         style: { textShadow: '2px 2px 5px black' }
     },
     {
         id: 3,
-        title: '',
+        title: 'cpp, unreal, sql',
         desc: 'Carosel',
         class: 'active',
         style: { textShadow: '2px 2px 5px black' }
