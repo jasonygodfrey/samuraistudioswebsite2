@@ -15,141 +15,124 @@ About.propTypes = {
 };
 
 // Function to load and render the GLTF model with animation handling
-// Function to load and render the GLTF model in wireframe mode
-function loadDragon(scene) {
+function loadDragon(scene, camera) {
     const loader = new GLTFLoader();
-  
+
     loader.load(
-      'blue_dragon/scene.gltf',
-      (gltf) => {
-        const dragon = gltf.scene;
-        dragon.scale.set(20000, 20000, 20000);
-        dragon.position.set(-220, -250, -500);
-        dragon.rotation.set(0, 180, 0);
-  
-        // Set the dragon's material to wireframe
-        dragon.traverse((child) => {
-          if (child.isMesh) {
-           // child.material.wireframe = true;
-            child.material.color = new THREE.Color('white'); // Set wireframe color if needed
-          }
-        });
-  
-        scene.add(dragon);
-      },
-      undefined,
-      (error) => {
-        console.error('An error happened loading the GLTF model:', error);
-      }
+        'blue_dragon/scene.gltf',
+        (gltf) => {
+            const dragon = gltf.scene;
+            dragon.scale.set(23000, 23000, 23000);
+            dragon.position.set(0, -600, 0);
+            dragon.rotation.set(0, -0.2, 0);
+
+            dragon.traverse((child) => {
+                if (child.isMesh) {
+                    child.material.color = new THREE.Color('white');
+                }
+            });
+
+            scene.add(dragon);
+
+            if (gltf.animations && gltf.animations.length > 0) {
+                const mixer = new THREE.AnimationMixer(dragon);
+                const action = mixer.clipAction(gltf.animations[0]);
+                action.play();
+                const clock = new THREE.Clock();
+                function animateDragon() {
+                    requestAnimationFrame(animateDragon);
+                    const delta = clock.getDelta();
+                    mixer.update(delta);
+                }
+                animateDragon();
+            }
+        },
+        undefined,
+        (error) => {
+            console.error('An error happened loading the GLTF model:', error);
+        }
     );
-  }
+}
 
 // Three.js setup inside React component
 function DragonCanvas() {
     const canvasRef = useRef();
-  
+
     useEffect(() => {
-      // Set up scene, camera, and renderer
-      const scene = new THREE.Scene();
-  
-      const camera = new THREE.PerspectiveCamera(
-        75,
-        window.innerWidth / window.innerHeight,
-        1,
-        10000
-      );
-      camera.position.set(0, 0.5, 1); // Positioned to view the model
-  
-      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setSize(window.innerWidth, window.innerHeight); // Set canvas size to full window
-      renderer.setPixelRatio(window.devicePixelRatio); // Ensure high quality rendering
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth / window.innerHeight,
+            1,
+            10000
+        );
+        camera.position.set(0, -40, 700);
 
-       // Set up post-processing
-    const composer = new EffectComposer(renderer);
-    const renderPass = new RenderPass(scene, camera);
-    composer.addPass(renderPass);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
 
-    // Unreal Bloom Pass parameters
-    const bloomParams = {
-      strength: 1.0, // Intensity of the bloom
-      radius: 0.4,   // Bloom radius
-      threshold: 0.1 // Threshold luminance to apply bloom
-    };
+        const composer = new EffectComposer(renderer);
+        const renderPass = new RenderPass(scene, camera);
+        composer.addPass(renderPass);
 
-    const bloomPass = new UnrealBloomPass(
-      new THREE.Vector2(window.innerWidth, window.innerHeight),
-      bloomParams.strength,
-      bloomParams.radius,
-      bloomParams.threshold
-    );
-    composer.addPass(bloomPass);
+        const bloomParams = {
+            strength: 0.40,
+            radius: 0.4,
+            threshold: 0.2
+        };
 
-     const resizeRenderer = () => {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-      
-        renderer.setSize(width, height);
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix();
-      };
-      window.addEventListener('resize', resizeRenderer);
-      resizeRenderer();
+        const bloomPass = new UnrealBloomPass(
+            new THREE.Vector2(window.innerWidth, window.innerHeight),
+            bloomParams.strength,
+            bloomParams.radius,
+            bloomParams.threshold
+        );
+        composer.addPass(bloomPass);
 
-      canvasRef.current.appendChild(renderer.domElement);
-  
-      // Lighting setup
-      const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
-      scene.add(ambientLight);
-  
-      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-      directionalLight.position.set(5, 10, 7.5);
-      scene.add(directionalLight);
+        const resizeRenderer = () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            renderer.setSize(width / 3, height / 3);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        };
+        window.addEventListener('resize', resizeRenderer);
+        resizeRenderer();
 
-        // Add a green circle at the dragon's position
-    const circleGeometry = new THREE.CircleGeometry(3, 32);
-    const circleMaterial = new THREE.MeshBasicMaterial({ color: 'green' });
-    const greenCircle = new THREE.Mesh(circleGeometry, circleMaterial);
-    greenCircle.rotation.x = -Math.PI / 2; // Rotate to lie flat on the ground
-    greenCircle.position.set(0, -1, 0); // Same position as the dragon
-    //scene.add(greenCircle);
-  
-      // Load the dragon model without animations
-      loadDragon(scene);
-  
-      // Animation loop
-      const animate = () => {
-        requestAnimationFrame(animate);
-        renderer.render(scene, camera);
-              // Render the scene with bloom effect
-      composer.render();
-      };
-      animate();
-  
-    // Clean up on component unmount
-    return () => {
-        window.removeEventListener('resize', resizeRenderer);
-        renderer.dispose();
-        scene.clear();
-      };
+        canvasRef.current.appendChild(renderer.domElement);
+
+        const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+        directionalLight.position.set(5, 10, 7.5);
+        scene.add(directionalLight);
+
+        loadDragon(scene, camera);
+
+        const animate = () => {
+            requestAnimationFrame(animate);
+            composer.render();
+        };
+        animate();
+
+        return () => {
+            window.removeEventListener('resize', resizeRenderer);
+            renderer.dispose();
+            scene.clear();
+        };
     }, []);
     return (
-        <div
-          ref={canvasRef}
-          style={{
-            width: '100%',
-            height: '100vh',
-            overflow: 'hidden',
-          }}
-        />
-      );
-      
-  }
-  
+        <div ref={canvasRef} style={{ position: 'fixed', top: 0, left: 0, zIndex: -1, width: '30%', height: '30%' }} />
+    );
+}
+
 // Define dataAbout within the same file
 const dataAbout = [
     {
         id: 1,
-        element: <DragonCanvas />, // Use the isolated DragonCanvas component here
+        element: <DragonCanvas />,
         class: 'active',
     },
     {
@@ -160,9 +143,19 @@ const dataAbout = [
     },
     {
         id: 3,
-        title: '3d 3',
+        title: '',
+        desc: 'Carosel',
         class: 'active',
         style: { textShadow: '2px 2px 5px black' }
+    },
+     // New section for Additional Skills
+     {
+        id: 4,
+        title: 'Projects/Education/Skills/Software Engineering',
+        desc: 'Proficient in Agile methodologies, with experience in Scrum and Kanban. Skilled in DevOps practices, including CI/CD pipelines and containerization with Docker. Strong understanding of cloud services, particularly AWS and Azure. Experienced in database management with SQL and NoSQL databases. roficient in Agile methodologies, with experience in Scrum and Kanban. Skilled in DevOps practices, including CI/CD pipelines and containerization with Docker. Strong understandieraction dynamics using C++ and Lua. Managed MySQL databases for player authentication and game interactions. Team contributions using Jira and Git, implementing innovative gameplay features. Resolved server-side bugs and exploits to ensure quality player experiences. Developed APIs for streamlined account sign-ups and user interface enhancements. Meta Oculus Rift VR Demo Oculus Rift VR Demo Oculus, Unity, C##, C++ · SQL, UNREAL ENGINE 5, Blender',
+        class: 'active',
+        style: { textShadow: '2px 2px 5px black' },
+    
     },
 ];
 
@@ -171,7 +164,6 @@ function About(props) {
 
     const [dataBlocks] = useState([
         {
-            subtitle: '',
             title: 'About',
             desc: 'I am a full-stack software engineer specialized in crafting immersive web and game experiences. My work blends innovation and creativity, bringing your digital visions to life.',
         },
@@ -185,89 +177,96 @@ function About(props) {
             title: 'Game Engineering',
             desc: 'C++ MMORPG Game Server Development Hosted and managed MMORPG Massively multiplayer online game servers. Designed and balanced new gameplay elements, spells, and Player interaction dynamics using C++ and Lua. Managed MySQL databases for player authentication and game interactions. Team contributions using Jira and Git, implementing innovative gameplay features. Resolved server-side bugs and exploits to ensure quality player experiences. Developed APIs for streamlined account sign-ups and user interface enhancements. Meta Oculus Rift VR Demo Oculus Rift VR Demo Oculus, Unity, C##, C++ · SQL, UNREAL ENGINE 5, Blender',
         },
+        {
+            subtitle: '',
+            title: 'Additional',
+            desc: '',
+        },
     ]);
 
     return (
         <>
-          {dataBlocks.map((dataBlock, index) => (
-            <section
-              key={index}
-              className="tf-section tf-about"
-              style={{ backgroundColor: 'black', color: 'white', ...style }}
-            >
-              <div className="container">
-                <div className="row">
-                  <div className="col-xl-5 col-md-12">
-                    <div
-                      className="content-about mobie-40"
-                      data-aos="fade-up"
-                      data-aos-duration="800"
-                    >
-                      <div className="tf-title st2">
-                        <p className="h8 sub-title">{dataBlock.subtitle}</p>
-                        <h4 className="title">{dataBlock.title}</h4>
-                      </div>
-                      <p>{dataBlock.desc}</p>
-                    </div>
-                  </div>
-                  <div className="col-xl-7 col-md-12">
-                    <div
-                      className="wrap-about2"
-                      data-aos="fade-up"
-                      data-aos-duration="800"
-                    >
-                      {/* Render DragonCanvas only if the title is 'About' */}
-                      {dataBlock.title === 'About' && (
-                        <div
-                          style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            width: '100%',
-                            height: '100%',
-                          }}
-                        >
-                          <AboutItem
-                            item={dataAbout.find((item) => item.id === 1)}
-                          />
-                          <div
-                            style={{
-                              width: '100%',
-                              maxWidth: '900px',
-                              height: '0',
-                              paddingBottom: '75%', // Adjust the aspect ratio (height / width * 100%)
-                              position: 'relative',
-                            }}
-                          >
-                            <div
-                              style={{
-                                position: 'absolute',
-                                top: '0',
-                                left: '0',
-                                width: '100%',
-                                height: '100%',
-                              }}
-                            >
-                              {dataAbout.find((item) => item.id === 1).element}
+            {dataBlocks.map((dataBlock, index) => (
+                <section
+                    key={index}
+                    className="tf-section tf-about"
+                    style={{ backgroundColor: 'black', color: 'white', ...style }}
+                >
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-xl-5 col-md-12">
+                                <div
+                                    className="content-about mobie-40"
+                                    data-aos="fade-up"
+                                    data-aos-duration="800"
+                                >
+                                    <div className="tf-title st2">
+                                        <p className="h8 sub-title">{dataBlock.subtitle}</p>
+                                        <h4 className="title">{dataBlock.title}</h4>
+                                    </div>
+                                    <p>{dataBlock.desc}</p>
+                                </div>
                             </div>
-                          </div>
+                            <div className="col-xl-7 col-md-12">
+                                <div
+                                    className="wrap-about2"
+                                    data-aos="fade-up"
+                                    data-aos-duration="800"
+                                >
+                                    {/* Render DragonCanvas only if the title is 'About' */}
+                                    {dataBlock.title === 'About' && (
+                                        <div
+                                            style={{
+                                                display: 'flex',
+                                                overflow: 'hidden',
+                                                alignItems: 'center',
+                                                width: '75%',
+                                                height: '75%',
+                                            }}
+                                        >
+                                            <AboutItem
+                                                item={dataAbout.find((item) => item.id === 1)}
+                                            />
+                                            <div
+                                                style={{
+                                                    width: '50%',
+                                                    maxWidth: '600px',
+                                                    height: '0',
+                                                    paddingBottom: '75%',
+                                                    position: 'relative',
+                                                }}
+                                            >
+                                                <div
+                                                    style={{
+                                                        position: 'absolute',
+                                                        top: '0',
+                                                        left: '0',
+                                                        width: '50%',
+                                                        height: '50%',
+                                                    }}
+                                                >
+                                                    {dataAbout.find((item) => item.id === 1).element}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+{/* Render 3D sections specifically for Full-Stack Web Development, Game Engineering, and Additional Skills */}
+{dataBlock.title === 'Full-Stack Web Development' && (
+    <AboutItem key={dataAbout[1].id} item={dataAbout[1]} />
+)}
+{dataBlock.title === 'Game Engineering' && (
+    <AboutItem key={dataAbout[2].id} item={dataAbout[2]} />
+)}
+{dataBlock.title === 'Additional' && (
+    <AboutItem key={dataAbout[3].id} item={dataAbout[3]} />
+)}
+                                </div>
+                            </div>
                         </div>
-                      )}
-                      {/* Render other sections as AboutItem components */}
-                      {dataBlock.title !== 'About' &&
-                        dataAbout
-                          .filter((item) => item.id !== 1)
-                          .map((item) => (
-                            <AboutItem key={item.id} item={item} />
-                          ))}
                     </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-          ))}
+                </section>
+            ))}
         </>
-      );
-    }
-    
-    export default About;
+    );
+}
+export default About;
