@@ -41,7 +41,7 @@ export function setupScene(rendererRef) {
     0.85
   );
   bloomPass.threshold = 0.21;
-  bloomPass.strength = 0.252;
+  bloomPass.strength = 0.652;
   bloomPass.radius = -0.25;
   composer.addPass(bloomPass);
 
@@ -106,7 +106,7 @@ export function setupScene(rendererRef) {
   };
 
   const brightnessPass = new ShaderPass(brightnessShader);
-  brightnessPass.uniforms['brightness'].value = 1.5; // Adjust to desired brightness level
+  brightnessPass.uniforms['brightness'].value = 2.5; // Adjust to desired brightness level
   composer.addPass(brightnessPass);
 
   // Add lights

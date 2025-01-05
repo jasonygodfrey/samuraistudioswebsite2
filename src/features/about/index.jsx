@@ -88,7 +88,7 @@ function DragonCanvas() {
             bloomParams.radius,
             bloomParams.threshold
         );
-        composer.addPass(bloomPass);
+        //composer.addPass(bloomPass);
 
         const resizeRenderer = () => {
             const width = window.innerWidth;
@@ -137,7 +137,8 @@ const dataAbout = [
     },
     {
         id: 2,
-        title: 'Partnerships, vr, ai',
+        title: 'featured, vr, ai',
+        desc: 'vercel projects',
         class: 'active',
         style: { textShadow: '2px 2px 5px black' }
     },
@@ -151,7 +152,7 @@ const dataAbout = [
      // New section for Additional Skills
      {
         id: 4,
-        title: 'Projects/Education/Skills/Software Engineering',
+        title: 'Projects/Education/Skills/Software Engineering/DSA/SYSTEMS',
         desc: 'Proficient in Agile methodologies, with experience in Scrum and Kanban. Skilled in DevOps practices, including CI/CD pipelines and containerization with Docker. Strong understanding of cloud services, particularly AWS and Azure. Experienced in database management with SQL and NoSQL databases. roficient in Agile methodologies, with experience in Scrum and Kanban. Skilled in DevOps practices, including CI/CD pipelines and containerization with Docker. Strong understandieraction dynamics using C++ and Lua. Managed MySQL databases for player authentication and game interactions. Team contributions using Jira and Git, implementing innovative gameplay features. Resolved server-side bugs and exploits to ensure quality player experiences. Developed APIs for streamlined account sign-ups and user interface enhancements. Meta Oculus Rift VR Demo Oculus Rift VR Demo Oculus, Unity, C##, C++ · SQL, UNREAL ENGINE 5, Blender',
         class: 'active',
         style: { textShadow: '2px 2px 5px black' },
@@ -190,7 +191,7 @@ function About(props) {
                 <section
                     key={index}
                     className="tf-section tf-about"
-                    style={{ backgroundColor: 'black', color: 'white', ...style }}
+                    style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white', ...style }}
                 >
                     <div className="container">
                         <div className="row">

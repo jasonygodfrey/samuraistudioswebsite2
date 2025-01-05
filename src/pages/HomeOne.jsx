@@ -104,13 +104,14 @@ function HomeOne(props) {
           height: "auto",
           zIndex: -1,
           objectFit: "cover",
+          
+
         }}
       />
       <Slider data={dataSlider} />
 
-      <div style={projectStyle}></div>
-      <About data={dataAbout} style={{ position: "relative", top: "0px" }} />
-      {/*   <Project data={dataProject} /> */}
+   
+      <About data={dataAbout} style={{ position: "relative", top: "0vh" }} />      {/*   <Project data={dataProject} /> */}
       {/*  <Blog data={dataBlog} /> */}
       {/* Uncomment these sections if needed */}
       {/* <RoadMap data={dataRoadmap} /> */}
@@ -121,7 +122,7 @@ function HomeOne(props) {
       
       <section 
     className="tf-section tf-contact" 
-    style={{ backgroundColor: 'black', color: 'white' }} // Inline styling for black background and white text
+    style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white' }} // Inline styling for 50% black background and white textnline styling for black background and white text
 >
     <div className="container">
         <div className="row">
@@ -162,6 +163,31 @@ c-1.30078 0.5 -2.40039 0.200195 -2.80078 -0.399414c-0.399414 -0.900391 0.200195 
 </a>
 
                             </li>
+
+
+
+
+
+
+<li>
+                            <a href="upwork" target="_blank" rel="noopener noreferrer">
+    <svg width="50" height="50" viewBox="0 0 448 448" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(180deg) scaleX(-1)' }}>
+        <path d=" M539.71 210.692c55.1572 -13.4834 94.0742 -63.124 94.0732 -119.509c0 -68.0264 -55.4639 -123.184 -123.185 -123.184h-381.197c-67.7217 0 -123.186 55.1572 -123.185 123.185c0 47.4961 27.8848 91.0098 70.7852 111.234
+c-2.14453 7.35449 -3.06543 15.0146 -3.06543 22.3691c0 46.2705 37.6914 83.9609 83.9629 83.9609c20.2227 0 39.835 -7.35449 55.1562 -20.5303c18.3867 74.7695 85.8008 127.781 163.021 127.781c92.542 0 167.924 -75.3818 167.924 -167.924
+c0 -12.5635 -1.22559 -25.127 -4.29004 -37.3838zM199.88 46.4463v110.928c0 8.27344 -7.04688 15.3213 -15.3213 15.3213h-30.9482c-8.27344 0 -15.3213 -7.04785 -15.3213 -15.3213v-110.928c0 -8.27344 7.04688 -15.3213 15.3213 -15.3213h30.9482
+c8.27344 0 15.3213 7.04688 15.3213 15.3213zM289.357 46.4463v131.458c0 8.27246 -7.04883 15.3203 -15.3223 15.3203h-30.9492c-8.27246 0 -15.3213 -7.04688 -15.3213 -15.3203v-131.458c0 -8.27344 7.04688 -15.3213 15.3213 -15.3213h30.9492
+c8.27344 0 15.3223 7.04688 15.3223 15.3213zM378.834 46.4463v162.714c0 8.27246 -7.04688 15.3213 -15.3213 15.3213h-30.9482c-8.27441 0 -15.3223 -7.04785 -15.3223 -15.3213v-162.714c0 -8.27344 7.04785 -15.3213 15.3223 -15.3213h30.9482
+c8.27441 0 15.3213 7.04688 15.3213 15.3213zM465.861 46.4463v224.612c0 8.58008 -7.04785 15.6279 -15.3223 15.6279h-28.4971c-8.27441 0 -15.3213 -7.04883 -15.3213 -15.6279v-224.612c0 -8.27344 7.04688 -15.3213 15.3213 -15.3213h28.4971
+c8.27441 0 15.3223 7.04688 15.3223 15.3213z
+" fill="white"/>
+    </svg>
+</a>
+
+                            </li>
+
+
+
+
                             <li>
                                 <Link to="#">
                                     <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
@@ -182,7 +208,7 @@ c-1.30078 0.5 -2.40039 0.200195 -2.80078 -0.399414c-0.399414 -0.900391 0.200195 
 
 <footer
   id="footer"
-  style={{ backgroundColor: "black", color: "white" }} // Setting background color to black and text color to white for contrast
+  style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', color: "white" }} // Setting background color to black and text color to white for contrast
 >
         
         <div className="footer-main">
@@ -251,11 +277,12 @@ c-1.30078 0.5 -2.40039 0.200195 -2.80078 -0.399414c-0.399414 -0.900391 0.200195 
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                
               }}
             >
             <p style={{ textAlign: "center" }}>
     Thank you for visiting!
-    <img src="/smile.png" alt="smile" style={{ width: "74px", verticalAlign: "middle" }} />
+    <img src="/smile.png" alt="smile" style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', width: "74px", verticalAlign: "middle" }} />
 </p>
 
             </div>

@@ -13,22 +13,21 @@ AboutItem.propTypes = {
 
 function AboutItem(props) {
     const { item } = props;
+    
+    // If you only want to remove className for `id === 1`:
+    const classNames = item.id === 1 
+        ? '' 
+        : `box-text corner-box ${item.class || ''}`; 
 
     return (
         <div 
-            key={item.id} 
-            className={`box-text corner-box ${item.class}`} 
-            style={item.style} // Apply item.style here
+            key={item.id}
+            className={classNames}
+            style={item.style}
         >
             <div className="h7">{item.title}</div>
-            <p>{item.desc} </p>
-           
-
-            
+            <p>{item.desc}</p>
         </div>
-
-        
-        
     );
 }
 
